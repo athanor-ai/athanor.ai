@@ -859,14 +859,6 @@
             }, 400);
         });
 
-        // ── Card title decode on hover ──
-        document.querySelectorAll('.research-card').forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                const title = card.querySelector('.card-title.decode-text');
-                if (title) decodeText(title);
-            });
-        });
-
         // ── Smooth scroll ──
         document.querySelectorAll('a[href^="#"]').forEach(a => {
             a.addEventListener('click', (e) => {
