@@ -442,6 +442,67 @@
             color: var(--text-dim);
         }
 
+        /* Careers section */
+        .careers-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            margin-top: 3rem;
+        }
+
+        .job-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s;
+            text-decoration: none;
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        .job-row:first-child {
+            border-top: 1px solid var(--border);
+        }
+
+        .job-row:hover {
+            padding-left: 0.75rem;
+        }
+
+        .job-row:hover .job-title {
+            color: var(--accent);
+        }
+
+        .job-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .job-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .job-meta {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            font-weight: 300;
+        }
+
+        .job-arrow {
+            font-size: 1.2rem;
+            color: var(--text-dim);
+            transition: all 0.3s;
+        }
+
+        .job-row:hover .job-arrow {
+            color: var(--accent);
+            transform: translateX(4px);
+        }
+
         /* Contact section */
         .contact-section {
             text-align: center;
@@ -569,6 +630,7 @@
         <div class="nav-links">
             <a href="#research">Research</a>
             <a href="#vision">Vision</a>
+            <a href="#careers">Careers</a>
             <a href="#contact" class="nav-cta">Contact</a>
         </div>
     </nav>
@@ -640,6 +702,40 @@
         <div class="section-inner fade-in">
             <div class="section-label">Our Belief</div>
             <p class="vision-text">The next breakthrough in AI isn't a bigger model. <span>It's giving models the ability to practice &mdash; to attempt tasks, receive feedback, and genuinely improve through experience.</span></p>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section id="careers">
+        <div class="section-inner fade-in">
+            <div class="section-label">Join us</div>
+            <h2 class="section-title">We're hiring</h2>
+            <p class="section-desc">We're a small team working on hard problems. If you want to shape how AI systems learn to improve themselves, we'd like to hear from you.</p>
+
+            <div class="careers-grid">
+                <a href="mailto:aidan@cmu.edu?subject=Research Scientist — Application" class="job-row">
+                    <div class="job-info">
+                        <div class="job-title">Research Scientist</div>
+                        <div class="job-meta">Full-time · San Francisco / Remote</div>
+                    </div>
+                    <span class="job-arrow">&rarr;</span>
+                </a>
+                <a href="mailto:aidan@cmu.edu?subject=Senior Research Scientist — Application" class="job-row">
+                    <div class="job-info">
+                        <div class="job-title">Senior Research Scientist</div>
+                        <div class="job-meta">Full-time · San Francisco / Remote</div>
+                    </div>
+                    <span class="job-arrow">&rarr;</span>
+                </a>
+                <a href="mailto:aidan@cmu.edu?subject=Open Application — Research" class="job-row">
+                    <div class="job-info">
+                        <div class="job-title">Open Application — Research</div>
+                        <div class="job-meta">Full-time · San Francisco / Remote</div>
+                    </div>
+                    <span class="job-arrow">&rarr;</span>
+                </a>
+            </div>
         </div>
     </section>
 
