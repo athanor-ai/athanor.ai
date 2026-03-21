@@ -566,11 +566,6 @@
             }
         }
 
-        /* Decode text effect */
-        .decode-text {
-            display: inline;
-        }
-
         /* Mobile */
         @media (max-width: 768px) {
             nav {
@@ -665,7 +660,14 @@
     </style>
 </head>
 <body>
-    <canvas id="wave-canvas"></canvas>
+    <canvas id="wave-canvas" style="will-change: transform;"></canvas>
+    <noscript>
+        <style>
+            #wave-canvas { display: none; }
+            .fade-in { opacity: 1 !important; transform: none !important; }
+            .hero * { opacity: 1 !important; animation: none !important; }
+        </style>
+    </noscript>
 
     <nav>
         <div class="logo">
@@ -782,7 +784,7 @@
         <div class="section-inner fade-in">
             <h2 class="section-title">Let's talk</h2>
             <p>We're in stealth. If our research interests you, reach out.</p>
-            <a href="mailto:aidan@cmu.edu" class="btn-primary">Send us an email</a>
+            <a href="#careers" class="btn-primary">View open roles</a>
         </div>
     </section>
 
@@ -818,9 +820,10 @@
                    Math.sin((x + y) * 0.003 + t * 0.2) * 0.2;
         }
 
-        // Ember particles
+        // Ember particles — fewer on mobile
+        const isMobile = window.innerWidth < 768;
         const embers = [];
-        const EMBER_COUNT = 40;
+        const EMBER_COUNT = isMobile ? 15 : 40;
 
         for (let i = 0; i < EMBER_COUNT; i++) {
             embers.push({
@@ -850,9 +853,9 @@
         function draw() {
             ctx.clearRect(0, 0, width, height);
 
-            // Draw waves
-            const lineCount = 35;
-            const pointCount = 120;
+            // Draw waves — fewer on mobile
+            const lineCount = isMobile ? 20 : 35;
+            const pointCount = isMobile ? 60 : 120;
 
             for (let i = 0; i < lineCount; i++) {
                 const baseY = (height * 0.3) + (i / lineCount) * height * 0.5;
