@@ -6,7 +6,7 @@
     <title>Athanor — AI Research</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='50,5 95,90 5,90' stroke='%23d4882a' stroke-width='5' fill='none'/><polygon points='50,35 72,75 28,75' stroke='%23e8a84c' stroke-width='4' fill='none' opacity='0.7'/></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='50,5 95,90 5,90' stroke='%23b85c2a' stroke-width='5' fill='none'/><polygon points='50,35 72,75 28,75' stroke='%23d4722e' stroke-width='4' fill='none' opacity='0.7'/></svg>">
 
     <!-- OpenGraph / Social -->
     <meta property="og:title" content="Athanor — AI Research">
@@ -33,10 +33,10 @@
             --border: rgba(255, 255, 255, 0.08);
             --text: #e8e8ed;
             --text-dim: rgba(255, 255, 255, 0.45);
-            --accent: #d4882a;
-            --accent-light: #e8a84c;
-            --accent-dark: #b86e1a;
-            --accent-glow: rgba(212, 136, 42, 0.15);
+            --accent: #b85c2a;
+            --accent-light: #d4722e;
+            --accent-dark: #9a4a20;
+            --accent-glow: rgba(184, 92, 42, 0.15);
         }
 
         html {
@@ -193,7 +193,7 @@
 
         .hero h1 em {
             font-style: normal;
-            background: linear-gradient(135deg, #e8a84c, #d4882a, #b86e1a);
+            background: linear-gradient(135deg, #d4722e, #b85c2a, #9a4a20);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -231,7 +231,7 @@
         }
 
         .btn-primary:hover {
-            background: #b86e1a;
+            background: #9a4a20;
             box-shadow: 0 0 30px var(--accent-glow);
         }
 
@@ -377,17 +377,17 @@
             left: 0;
             right: 0;
             height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(212, 136, 42, 0), transparent);
+            background: linear-gradient(90deg, transparent, rgba(184, 92, 42, 0), transparent);
             transition: all 0.4s;
         }
 
         .research-card:hover::before {
-            background: linear-gradient(90deg, transparent, rgba(212, 136, 42, 0.4), transparent);
+            background: linear-gradient(90deg, transparent, rgba(184, 92, 42, 0.4), transparent);
         }
 
         .research-card:hover {
-            border-color: rgba(212, 136, 42, 0.2);
-            background: rgba(212, 136, 42, 0.03);
+            border-color: rgba(184, 92, 42, 0.2);
+            background: rgba(184, 92, 42, 0.03);
             transform: translateY(-2px);
         }
 
@@ -672,8 +672,8 @@
     <nav>
         <div class="logo">
             <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <polygon points="50,5 95,90 5,90" stroke="#d4882a" stroke-width="5" fill="none"/>
-                <polygon points="50,35 72,75 28,75" stroke="#e8a84c" stroke-width="4" fill="none" opacity="0.7"/>
+                <polygon points="50,5 95,90 5,90" stroke="#b85c2a" stroke-width="5" fill="none"/>
+                <polygon points="50,35 72,75 28,75" stroke="#d4722e" stroke-width="4" fill="none" opacity="0.7"/>
             </svg>
             athanor
         </div>
@@ -862,7 +862,7 @@
                 const alpha = 0.02 + 0.03 * Math.sin(i / lineCount * Math.PI);
 
                 ctx.beginPath();
-                ctx.strokeStyle = `rgba(212, 136, 42, ${alpha})`;
+                ctx.strokeStyle = `rgba(184, 92, 42, ${alpha})`;
                 ctx.lineWidth = 1;
 
                 for (let j = 0; j <= pointCount; j++) {
@@ -898,15 +898,15 @@
 
                 // Glow
                 const grad = ctx.createRadialGradient(e.x, e.y, 0, e.x, e.y, glow);
-                grad.addColorStop(0, `rgba(232, 168, 76, ${a * 0.6})`);
-                grad.addColorStop(1, `rgba(212, 136, 42, 0)`);
+                grad.addColorStop(0, `rgba(212, 114, 46, ${a * 0.6})`);
+                grad.addColorStop(1, `rgba(184, 92, 42, 0)`);
                 ctx.fillStyle = grad;
                 ctx.beginPath();
                 ctx.arc(e.x, e.y, glow, 0, Math.PI * 2);
                 ctx.fill();
 
                 // Core
-                ctx.fillStyle = `rgba(255, 200, 120, ${a})`;
+                ctx.fillStyle = `rgba(230, 160, 90, ${a})`;
                 ctx.beginPath();
                 ctx.arc(e.x, e.y, e.size * 0.5, 0, Math.PI * 2);
                 ctx.fill();
