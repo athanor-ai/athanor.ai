@@ -656,9 +656,12 @@
             transition: background-color 0.35s;
         }
         .cal-env-row td {
-            font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
-            color: var(--accent); padding: 1rem 0.5rem 0.35rem 1rem; font-weight: 500;
+            padding: 1rem 0.5rem 0.35rem 0;
             border-bottom: none !important;
+        }
+        .cal-env-row td:first-child {
+            font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
+            color: var(--accent); font-weight: 500; padding-left: 1rem; white-space: nowrap;
         }
         .cal-avg-row td { border-top: 2px solid var(--border) !important; font-weight: 700; padding-top: 0.6rem; }
         .cal-avg-row .cal-cell { font-weight: 700; }
@@ -763,7 +766,7 @@
             .cal-heatmap td:first-child { min-width: 90px; width: 90px; position: sticky; left: 0; background: rgba(5,5,8,0.95); z-index: 2; font-size: 0.65rem; }
             .cal-heatmap td { padding: 0.35rem 0.3rem; }
             .cal-cell { min-width: 40px; padding: 2px 5px; font-size: 0.65rem; }
-            .cal-env-row td { position: sticky; left: 0; background: rgba(5,5,8,0.95); z-index: 2; font-size: 0.55rem; padding: 0.75rem 0.4rem 0.25rem; }
+            .cal-env-row td { font-size: 0.55rem; padding: 0.75rem 0.4rem 0.25rem; }
             .cal-detail-row td { font-size: 0.65rem; padding: 0.3rem 0.5rem 0.6rem; }
             .cal-param-label { display: none; }
             .cal-avg-row td:first-child { position: sticky; left: 0; background: rgba(5,5,8,0.95); z-index: 2; }
@@ -1335,13 +1338,15 @@
             // Build heatmap body
             const tbody = document.getElementById('cal-tbody');
             for (const env of D.envs) {
-                // Env separator row
+                // Env separator row — first cell has name, rest are empty
                 const sepTr = document.createElement('tr');
                 sepTr.className = 'cal-env-row';
                 const sepTd = document.createElement('td');
-                sepTd.setAttribute('colspan', models.length + 1);
                 sepTd.textContent = env.name;
                 sepTr.appendChild(sepTd);
+                for (let mi = 0; mi < models.length; mi++) {
+                    sepTr.appendChild(document.createElement('td'));
+                }
                 tbody.appendChild(sepTr);
 
                 for (const task of env.tasks) {
