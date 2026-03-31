@@ -572,16 +572,16 @@
         .cal-controls { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
         .cal-presets { display: flex; gap: 0.5rem; }
         .cal-presets button {
-            padding: 0.45rem 1.25rem; border: 1px solid var(--border); border-radius: 6px;
-            background: var(--bg-card); color: var(--text-dim); cursor: pointer;
-            font-size: 0.8rem; font-family: 'Inter', sans-serif; font-weight: 400;
+            padding: 0.45rem 1.25rem; border: 1px solid rgba(255,255,255,0.15); border-radius: 6px;
+            background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.8); cursor: pointer;
+            font-size: 0.85rem; font-family: 'Inter', sans-serif; font-weight: 500;
             transition: all 0.2s; letter-spacing: 0.01em;
         }
-        .cal-presets button:hover { border-color: rgba(255,255,255,0.2); color: var(--text); }
-        .cal-presets button.active { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 500; }
+        .cal-presets button:hover { border-color: rgba(255,255,255,0.3); color: #fff; background: rgba(255,255,255,0.1); }
+        .cal-presets button.active { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
 
         .cal-slider-wrap { flex: 1; min-width: 200px; display: flex; align-items: center; gap: 0.75rem; }
-        .cal-slider-wrap .endpoint { font-size: 0.7rem; color: var(--text-dim); white-space: nowrap; }
+        .cal-slider-wrap .endpoint { font-size: 0.8rem; color: rgba(255,255,255,0.7); white-space: nowrap; font-weight: 500; }
         .cal-slider-wrap input[type=range] {
             flex: 1; height: 4px; -webkit-appearance: none; appearance: none;
             background: linear-gradient(90deg, rgba(184,92,42,0.2), var(--accent));
@@ -599,7 +599,7 @@
             background: var(--accent-light); box-shadow: 0 0 10px var(--accent-glow);
             cursor: grab;
         }
-        .cal-param-label { font-size: 0.75rem; color: var(--accent-light); font-family: 'Courier New', monospace; font-variant-numeric: tabular-nums; min-width: 140px; white-space: nowrap; }
+        .cal-param-label { font-size: 0.8rem; color: var(--accent-light); font-family: 'Courier New', monospace; font-variant-numeric: tabular-nums; min-width: 140px; white-space: nowrap; font-weight: 600; }
 
         /* Bar chart */
         .cal-chart {
@@ -662,6 +662,14 @@
         }
         .cal-avg-row td { border-top: 2px solid var(--border) !important; font-weight: 700; padding-top: 0.6rem; }
         .cal-avg-row .cal-cell { font-weight: 700; }
+        .cal-task-row { cursor: pointer; transition: background 0.15s; }
+        .cal-task-row:hover td { background: rgba(255,255,255,0.03); }
+        .cal-task-expanded td:first-child { color: var(--accent-light); }
+        .cal-detail-row td {
+            font-size: 0.75rem; color: rgba(255,255,255,0.6); padding: 0.4rem 1rem 0.75rem;
+            line-height: 1.6; border-bottom: 1px solid rgba(255,255,255,0.06);
+            background: rgba(184,92,42,0.03);
+        }
 
         /* Mobile */
         @media (max-width: 768px) {
@@ -739,14 +747,26 @@
                 grid-template-columns: 1fr;
             }
 
-            .cal-controls { flex-direction: column; align-items: stretch; }
+            .cal-container { margin-top: 2rem; }
+            .cal-controls { flex-direction: column; align-items: stretch; gap: 1rem; }
             .cal-presets { justify-content: center; }
-            .cal-chart { height: 180px; padding: 1.5rem 1rem 0.75rem; gap: 0.75rem; }
-            .cal-bar-name { font-size: 0.6rem; }
+            .cal-presets button { padding: 0.5rem 1rem; font-size: 0.8rem; }
+            .cal-slider-wrap { min-width: unset; }
+            .cal-chart { height: 200px; padding: 1.5rem 0.75rem 0.75rem; gap: 0.5rem; margin-bottom: 1.5rem; }
+            .cal-bar-col { max-width: 60px; }
+            .cal-bar-name { font-size: 0.55rem; white-space: normal; line-height: 1.2; height: 2.4em; display: flex; align-items: center; justify-content: center; }
             .cal-bar-value { font-size: 0.7rem; }
-            .cal-heatmap th:first-child, .cal-heatmap td:first-child { min-width: 140px; position: sticky; left: 0; background: var(--bg); z-index: 2; }
-            .cal-env-row td { position: sticky; left: 0; background: var(--bg); z-index: 2; }
+            .cal-heatmap-wrap { margin-top: 0; border-radius: 8px; }
+            .cal-heatmap { font-size: 0.7rem; table-layout: auto; }
+            .cal-heatmap th { font-size: 0.6rem; padding: 0.5rem 0.4rem; white-space: nowrap; }
+            .cal-heatmap th:first-child { width: 90px; min-width: 90px; position: sticky; left: 0; background: rgba(5,5,8,0.95); z-index: 2; }
+            .cal-heatmap td:first-child { min-width: 90px; width: 90px; position: sticky; left: 0; background: rgba(5,5,8,0.95); z-index: 2; font-size: 0.65rem; }
+            .cal-heatmap td { padding: 0.35rem 0.3rem; }
+            .cal-cell { min-width: 40px; padding: 2px 5px; font-size: 0.65rem; }
+            .cal-env-row td { position: sticky; left: 0; background: rgba(5,5,8,0.95); z-index: 2; font-size: 0.55rem; padding: 0.75rem 0.4rem 0.25rem; }
+            .cal-detail-row td { font-size: 0.65rem; padding: 0.3rem 0.5rem 0.6rem; }
             .cal-param-label { display: none; }
+            .cal-avg-row td:first-child { position: sticky; left: 0; background: rgba(5,5,8,0.95); z-index: 2; }
 
             .contact-section {
                 padding: 6rem 1.5rem;
@@ -968,20 +988,33 @@
         }
 
         let time = 0;
+        // Calibrator intensity: 0 = generous/cool, 1 = strict/hot. Smoothly interpolated.
+        let calIntensity = 0.5, calIntensityTarget = 0.5;
 
         function draw() {
             ctx.clearRect(0, 0, width, height);
 
-            // Draw waves — fewer on mobile
+            // Smooth interpolation toward target
+            calIntensity += (calIntensityTarget - calIntensity) * 0.04;
+            const ci = calIntensity;
+
+            // Color mixing: generous=blue-teal, default=warm orange, strict=hot red-orange
+            const waveR = Math.round(80 + 104 * ci);    // 80 (blue) -> 184 (orange)
+            const waveG = Math.round(140 - 48 * ci);    // 140 (teal) -> 92
+            const waveB = Math.round(180 - 138 * ci);   // 180 (blue) -> 42 (orange)
+            const speedMul = 0.6 + ci * 0.8;            // 0.6x calm -> 1.4x intense
+            const waveMul = 30 + ci * 25;               // wave amplitude
+
+            // Draw waves
             const lineCount = isMobile ? 20 : 35;
             const pointCount = isMobile ? 60 : 120;
 
             for (let i = 0; i < lineCount; i++) {
                 const baseY = (height * 0.3) + (i / lineCount) * height * 0.5;
-                const alpha = 0.02 + 0.03 * Math.sin(i / lineCount * Math.PI);
+                const alpha = (0.02 + 0.03 * Math.sin(i / lineCount * Math.PI)) * (0.7 + ci * 0.6);
 
                 ctx.beginPath();
-                ctx.strokeStyle = `rgba(184, 92, 42, ${alpha})`;
+                ctx.strokeStyle = `rgba(${waveR}, ${waveG}, ${waveB}, ${alpha})`;
                 ctx.lineWidth = 1;
 
                 for (let j = 0; j <= pointCount; j++) {
@@ -991,8 +1024,8 @@
                     const dist = Math.sqrt(distX * distX + distY * distY);
                     const mouseInfluence = Math.exp(-dist * 3) * 30;
 
-                    const n = noise(x, baseY + i * 50, time);
-                    const y = baseY + n * 40 + mouseInfluence * Math.sin(time + i);
+                    const n = noise(x, baseY + i * 50, time * speedMul);
+                    const y = baseY + n * waveMul + mouseInfluence * Math.sin(time * speedMul + i);
 
                     if (j === 0) ctx.moveTo(x, y);
                     else ctx.lineTo(x, y);
@@ -1001,10 +1034,18 @@
                 ctx.stroke();
             }
 
+            // Ember colors shift with intensity
+            const emberR1 = Math.round(100 + 112 * ci);  // 100 -> 212
+            const emberG1 = Math.round(160 - 46 * ci);   // 160 -> 114
+            const emberB1 = Math.round(200 - 154 * ci);  // 200 -> 46
+            const emberR2 = Math.round(120 + 110 * ci);  // 120 -> 230
+            const emberG2 = Math.round(180 - 20 * ci);   // 180 -> 160
+            const emberB2 = Math.round(220 - 130 * ci);  // 220 -> 90
+
             // Draw embers
             for (const e of embers) {
-                e.x += e.vx + Math.sin(time * 2 + e.x * 0.01) * 0.15;
-                e.y += e.vy;
+                e.x += (e.vx + Math.sin(time * 2 + e.x * 0.01) * 0.15) * speedMul;
+                e.y += e.vy * speedMul;
                 e.life -= e.decay;
 
                 if (e.life <= 0 || e.y < -10) {
@@ -1013,19 +1054,19 @@
                 }
 
                 const a = e.alpha * e.life;
-                const glow = e.size * 3;
+                const glow = e.size * (2.5 + ci * 1.5);
 
                 // Glow
                 const grad = ctx.createRadialGradient(e.x, e.y, 0, e.x, e.y, glow);
-                grad.addColorStop(0, `rgba(212, 114, 46, ${a * 0.6})`);
-                grad.addColorStop(1, `rgba(184, 92, 42, 0)`);
+                grad.addColorStop(0, `rgba(${emberR1}, ${emberG1}, ${emberB1}, ${a * 0.6})`);
+                grad.addColorStop(1, `rgba(${waveR}, ${waveG}, ${waveB}, 0)`);
                 ctx.fillStyle = grad;
                 ctx.beginPath();
                 ctx.arc(e.x, e.y, glow, 0, Math.PI * 2);
                 ctx.fill();
 
                 // Core
-                ctx.fillStyle = `rgba(230, 160, 90, ${a})`;
+                ctx.fillStyle = `rgba(${emberR2}, ${emberG2}, ${emberB2}, ${a})`;
                 ctx.beginPath();
                 ctx.arc(e.x, e.y, e.size * 0.5, 0, Math.PI * 2);
                 ctx.fill();
@@ -1080,28 +1121,28 @@
             modelNames: {"claude-sonnet-4-6":"Claude Sonnet 4","gemini-2.5-flash":"Gemini 2.5 Flash","gemini-3.1-pro-preview":"Gemini 3.1 Pro","kimi-k2.5":"Kimi K2.5","mistral-large-3":"Mistral Large 3"},
             envs: [
                 {id:"hw-cbmc",name:"Hardware Verification",tasks:[
-                    {id:"fix-restoring-div",name:"Fix Restoring Divider",c:0.55,s:8.0,f:[1.0,0.2,1.0,0.2,0.5333]},
-                    {id:"fix-fifo-credit",name:"Fix FIFO Credit Flow",c:0.75,s:8.0,f:[1.0,0.7143,1.0,0.4286,0.9047]}
+                    {n:"Restoring Div",d:"Fix 3 interacting wiring bugs in a restoring divider. EBMC bounded model checking with 5 SVA properties.",c:0.55,s:8.0,f:[1.0,0.2,1.0,0.2,0.5333]},
+                    {n:"FIFO Credit",d:"Debug credit-based flow control in an async FIFO. 7 formal properties, pipeline hazard interactions.",c:0.75,s:8.0,f:[1.0,0.7143,1.0,0.4286,0.9047]}
                 ]},
                 {id:"lean",name:"Theorem Proving",tasks:[
-                    {id:"binary-search",name:"Binary Search Proof",c:0.55,s:8.0,f:[0.0,1.0,0.3303,0.2004,0.6667]},
-                    {id:"ackermann-level3",name:"Ackermann Function L3",c:0.6,s:10.0,f:[1.0,0.1704,0.5346,0.0,0.0098]}
+                    {n:"Binary Search",d:"Prove correctness of binary search in Lean 4. Requires loop invariants and termination proof.",c:0.55,s:8.0,f:[0.0,1.0,0.3303,0.2004,0.6667]},
+                    {n:"Ackermann L3",d:"Prove properties of the Ackermann function at level 3. Nested recursion and well-founded ordering.",c:0.6,s:10.0,f:[1.0,0.1704,0.5346,0.0,0.0098]}
                 ]},
-                {id:"csparse",name:"Sparse Matrix Computation",tasks:[
-                    {id:"vec_scale",name:"Vector Scale Kernel",c:0.55,s:8.0,f:[0.6713,0.6547,0.6854,0.4325,0.0]},
-                    {id:"csparse_norm",name:"Sparse Matrix Norm",c:0.55,s:8.0,f:[0.5427,0.0,0.5281,0.1346,0.2639]}
+                {id:"csparse",name:"Sparse Matrices",tasks:[
+                    {n:"Vec Scale",d:"Implement sparse vector scaling kernel in Rust. Must match reference within floating-point tolerance.",c:0.55,s:8.0,f:[0.6713,0.6547,0.6854,0.4325,0.0]},
+                    {n:"Sparse Norm",d:"Compute sparse matrix norm in Rust. CSC format traversal with numerical stability requirements.",c:0.55,s:8.0,f:[0.5427,0.0,0.5281,0.1346,0.2639]}
                 ]},
-                {id:"congestion",name:"Network Congestion Control",tasks:[
-                    {id:"fix_cubic",name:"Fix CUBIC Slow Start",c:0.9,s:8.0,f:[1.0,0.9028,0.903,0.0814,1.0]},
-                    {id:"westwood",name:"Implement Westwood+",c:0.92,s:8.0,f:[0.8966,0.1566,0.7243,0.6941,0.9154]}
+                {id:"congestion",name:"Congestion Control",tasks:[
+                    {n:"CUBIC Start",d:"Fix slow start behavior in CUBIC congestion control. Must pass throughput and fairness gates.",c:0.9,s:8.0,f:[1.0,0.9028,0.903,0.0814,1.0]},
+                    {n:"Westwood+",d:"Implement Westwood+ bandwidth estimation from scratch. Evaluated on high-BDP network scenarios.",c:0.92,s:8.0,f:[0.8966,0.1566,0.7243,0.6941,0.9154]}
                 ]},
                 {id:"consensus",name:"Distributed Systems",tasks:[
-                    {id:"snapshot",name:"Fix Distributed Snapshot",c:0.85,s:8.0,f:[1.0,1.0,0.6667,0.0,1.0]},
-                    {id:"lsm",name:"Implement LSM Compaction",c:0.7,s:8.0,f:[1.0,1.0,0.6667,0.0,1.0]}
+                    {n:"Snapshot",d:"Fix distributed snapshot algorithm. Must maintain consistent cuts across concurrent message channels.",c:0.85,s:8.0,f:[1.0,1.0,0.6667,0.0,1.0]},
+                    {n:"LSM Compact",d:"Implement LSM-tree compaction with correct merge ordering. Tested against linearizability checker.",c:0.7,s:8.0,f:[1.0,1.0,0.6667,0.0,1.0]}
                 ]},
-                {id:"cedar",name:"Authorization Logic",tasks:[
-                    {id:"hospital_auth",name:"Hospital Auth System",c:0.53,s:9.0,f:[0.7596,0.0976,0.0,0.3867,0.308]},
-                    {id:"unsafe_attr",name:"Fix Unsafe Attr Access",c:0.9,s:8.0,f:[1.0,0.4135,0.2757,0.1378,0.4135]}
+                {id:"cedar",name:"Authorization",tasks:[
+                    {n:"Hospital Auth",d:"Build a complete hospital authorization policy in Cedar. Role hierarchies, department isolation, emergency overrides.",c:0.53,s:9.0,f:[0.7596,0.0976,0.0,0.3867,0.308]},
+                    {n:"Unsafe Attr",d:"Fix unsafe attribute access patterns in Cedar policies. Must pass all 8 security property checks.",c:0.9,s:8.0,f:[1.0,0.4135,0.2757,0.1378,0.4135]}
                 ]}
             ]
         };
@@ -1208,6 +1249,8 @@
             }
             calRender();
             document.querySelectorAll('.cal-presets button').forEach(b => b.classList.remove('active'));
+            // Drive background intensity: 0=generous, 1=strict
+            calIntensityTarget = val / 100;
         }
 
         function calPreset(preset) {
@@ -1224,6 +1267,7 @@
             } else {
                 slider.value = 50;
                 document.getElementById('cal-btn-default').classList.add('active');
+                calIntensityTarget = 0.5;
                 // Restore per-task defaults
                 let i = 0;
                 for (const env of CALIBRATOR_DATA.envs) {
@@ -1302,9 +1346,11 @@
 
                 for (const task of env.tasks) {
                     const tr = document.createElement('tr');
+                    tr.className = 'cal-task-row';
                     const tdName = document.createElement('td');
-                    tdName.textContent = task.name;
-                    tdName.title = task.id;
+                    tdName.className = 'cal-task-name';
+                    tdName.textContent = task.n;
+                    tdName.style.cursor = 'pointer';
                     tr.appendChild(tdName);
 
                     const rowCells = [];
@@ -1318,6 +1364,23 @@
                     }
                     calCells.push(rowCells);
                     tbody.appendChild(tr);
+
+                    // Detail row (hidden by default)
+                    const detailTr = document.createElement('tr');
+                    detailTr.className = 'cal-detail-row';
+                    detailTr.style.display = 'none';
+                    const detailTd = document.createElement('td');
+                    detailTd.setAttribute('colspan', models.length + 1);
+                    detailTd.textContent = task.d;
+                    detailTr.appendChild(detailTd);
+                    tbody.appendChild(detailTr);
+
+                    // Click to toggle
+                    tr.addEventListener('click', function() {
+                        const showing = detailTr.style.display !== 'none';
+                        detailTr.style.display = showing ? 'none' : 'table-row';
+                        tr.classList.toggle('cal-task-expanded', !showing);
+                    });
                 }
             }
 
