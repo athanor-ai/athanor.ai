@@ -668,6 +668,8 @@
         .cal-task-row { cursor: pointer; transition: background 0.15s; }
         .cal-task-row:hover td { background: rgba(255,255,255,0.03); }
         .cal-task-expanded td:first-child { color: var(--accent-light); }
+        .cal-detail-row { display: none; }
+        .cal-detail-row.open { display: table-row; }
         .cal-detail-row td {
             font-size: 0.75rem; color: rgba(255,255,255,0.6); padding: 0.4rem 1rem 0.75rem;
             line-height: 1.6; border-bottom: 1px solid rgba(255,255,255,0.06);
@@ -1373,7 +1375,6 @@
                     // Detail row (hidden by default)
                     const detailTr = document.createElement('tr');
                     detailTr.className = 'cal-detail-row';
-                    detailTr.style.display = 'none';
                     const detailTd = document.createElement('td');
                     detailTd.setAttribute('colspan', models.length + 1);
                     detailTd.textContent = task.d;
@@ -1382,8 +1383,8 @@
 
                     // Click to toggle
                     tr.addEventListener('click', function() {
-                        const showing = detailTr.style.display !== 'none';
-                        detailTr.style.display = showing ? 'none' : 'table-row';
+                        const showing = detailTr.classList.contains('open');
+                        detailTr.classList.toggle('open', !showing);
                         tr.classList.toggle('cal-task-expanded', !showing);
                     });
                 }
