@@ -16,17 +16,17 @@ import glob
 import os
 from pathlib import Path
 
-# Model order (matches website display)
+# Model order: strongest to weakest (by overall mean across all envs)
 MODELS = [
     "claude-sonnet-4-6",
-    "gemini-2.5-flash",
     "gemini-3.1-pro-preview",
-    "kimi-k2.5",
+    "gemini-2.5-flash",
     "Mistral-large-3",
+    "kimi-k2.5",
 ]
 
 MODEL_DISPLAY = {
-    "claude-sonnet-4-6": "Claude Sonnet 4",
+    "claude-sonnet-4-6": "Claude Sonnet 4.6",
     "gemini-2.5-flash": "Gemini 2.5 Flash",
     "gemini-3.1-pro-preview": "Gemini 3.1 Pro",
     "kimi-k2.5": "Kimi K2.5",
@@ -194,47 +194,58 @@ def load_configs(env_dir: Path) -> dict:
 
 
 def _select_showcase_tasks(tasks: list, n: int = 3) -> list:
-    """Select n tasks with maximum difficulty spread for the website.
+    """Select n tasks for the website showcase.
 
-    Pick one from each bucket: hard (Sonnet < 0.3), medium (0.3-0.7), easy (> 0.7).
-    Prefer tasks with scores from more models. If a bucket is empty, fill from
-    adjacent buckets.
+    Criteria (in priority order):
+    1. Sonnet leads or ties for best score (shows our primary model well)
+    2. Good difficulty spread across models (interesting to look at)
+    3. Mix of difficulty levels (hard/medium/easy)
     """
     if len(tasks) <= n:
         return tasks
 
-    # Score tasks by Sonnet (index 0) or first available model
     def sonnet_score(t):
-        for s in t["f"]:
-            if s is not None:
-                return s
-        return 0.5  # default to medium
+        return t["f"][0] if t["f"][0] is not None else -1
 
-    # Also prefer tasks with more model coverage and more spread
-    def spread(t):
+    def sonnet_leads(t):
+        """True if Sonnet is the best or tied-best model on this task."""
+        s = sonnet_score(t)
+        if s < 0:
+            return False
+        others = [x for x in t["f"][1:] if x is not None]
+        if not others:
+            return True
+        return s >= max(others) - 0.05  # within 0.05 counts as tied
+
+    def model_spread(t):
         valid = [s for s in t["f"] if s is not None]
         if len(valid) < 2:
             return 0
         return max(valid) - min(valid)
 
-    hard = [t for t in tasks if sonnet_score(t) < 0.3]
-    medium = [t for t in tasks if 0.3 <= sonnet_score(t) <= 0.7]
-    easy = [t for t in tasks if sonnet_score(t) > 0.7]
+    # Prefer tasks where Sonnet leads
+    sonnet_wins = [t for t in tasks if sonnet_leads(t)]
+    sonnet_loses = [t for t in tasks if not sonnet_leads(t)]
 
-    # Sort each bucket by spread (more spread = more interesting)
-    hard.sort(key=spread, reverse=True)
-    medium.sort(key=spread, reverse=True)
-    easy.sort(key=spread, reverse=True)
+    # Within each group, sort by spread (more interesting)
+    sonnet_wins.sort(key=model_spread, reverse=True)
+    sonnet_loses.sort(key=model_spread, reverse=True)
+
+    # Build from Sonnet-winning tasks first, fill from others
+    pool = sonnet_wins + sonnet_loses
+
+    # Pick for difficulty spread: one hard, one medium, one easy
+    hard = [t for t in pool if sonnet_score(t) < 0.4]
+    medium = [t for t in pool if 0.4 <= sonnet_score(t) <= 0.75]
+    easy = [t for t in pool if sonnet_score(t) > 0.75]
 
     selected = []
-    # Pick one from each bucket
     for bucket in [hard, medium, easy]:
         if bucket and len(selected) < n:
             selected.append(bucket[0])
 
-    # Fill remaining slots from any bucket
-    remaining = [t for t in tasks if t not in selected]
-    remaining.sort(key=spread, reverse=True)
+    # Fill remaining from pool (Sonnet-wins first)
+    remaining = [t for t in pool if t not in selected]
     while len(selected) < n and remaining:
         selected.append(remaining.pop(0))
 

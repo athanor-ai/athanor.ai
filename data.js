@@ -2,13 +2,13 @@
 const CALIBRATOR_DATA = {
   "models": [
     "claude-sonnet-4-6",
-    "gemini-2.5-flash",
     "gemini-3.1-pro-preview",
-    "kimi-k2.5",
-    "Mistral-large-3"
+    "gemini-2.5-flash",
+    "Mistral-large-3",
+    "kimi-k2.5"
   ],
   "modelNames": {
-    "claude-sonnet-4-6": "Claude Sonnet 4",
+    "claude-sonnet-4-6": "Claude Sonnet 4.6",
     "gemini-2.5-flash": "Gemini 2.5 Flash",
     "gemini-3.1-pro-preview": "Gemini 3.1 Pro",
     "kimi-k2.5": "Kimi K2.5",
@@ -27,23 +27,23 @@ const CALIBRATOR_DATA = {
           "s": 10.0,
           "f": [
             null,
+            1.0,
             0.0243,
-            1.0,
-            1.0,
-            0.0
+            0.0,
+            1.0
           ]
         },
         {
-          "n": "Fix SPI Slave",
-          "d": "Debug a spi slave circuit until all formal properties prove.",
-          "c": 0.55,
+          "n": "Fix FIFO Async",
+          "d": "Debug a fifo async circuit until all formal properties prove.",
+          "c": 0.75,
           "s": 8.0,
           "f": [
-            0.4049,
-            0.4049,
-            0.8529,
-            0.0739,
-            0.0739
+            0.4857,
+            0.4857,
+            0.078,
+            0.0,
+            0.078
           ]
         },
         {
@@ -53,10 +53,10 @@ const CALIBRATOR_DATA = {
           "s": 8.0,
           "f": [
             1.0,
-            0.047,
             1.0,
             0.047,
-            0.0
+            0.0,
+            0.047
           ]
         }
       ]
@@ -75,21 +75,21 @@ const CALIBRATOR_DATA = {
             0.0,
             1.0,
             1.0,
-            1.0,
-            0.0
+            0.0,
+            1.0
           ]
         },
         {
-          "n": "Two Sum",
-          "d": "Construct Lean 4 proofs for two sum.",
+          "n": "Increasing Triplet",
+          "d": "Construct Lean 4 proofs for increasing triplet.",
           "c": 0.55,
           "s": 8.0,
           "f": [
-            0.4049,
-            0.4049,
-            1.0,
-            0.4049,
-            0.0
+            0.734,
+            0.734,
+            0.734,
+            0.734,
+            0.734
           ]
         },
         {
@@ -99,10 +99,10 @@ const CALIBRATOR_DATA = {
           "s": 10.0,
           "f": [
             1.0,
+            1.0,
             0.5079,
-            1.0,
-            1.0,
-            0.0
+            0.0,
+            1.0
           ]
         }
       ]
@@ -113,42 +113,42 @@ const CALIBRATOR_DATA = {
       "desc": "Agents migrate C sparse matrix libraries to idiomatic Rust with Verus verification annotations.",
       "tasks": [
         {
-          "n": "Csparse Transpose",
-          "d": "Port the CSparse transpose function from C to idiomatic Rust.",
+          "n": "Mat Diag",
+          "d": "Port the CSparse mat diag function from C to idiomatic Rust.",
           "c": 0.5,
           "s": 8.0,
           "f": [
-            0.2875,
-            0.0,
-            0.4167,
-            0.2772,
+            0.3462,
+            0.3506,
+            0.2879,
+            0.2681,
             0.0
           ]
         },
         {
-          "n": "Csc Col Norm",
-          "d": "Port the CSparse csc col norm function from C to idiomatic Rust.",
+          "n": "Csparse Norm",
+          "d": "Port the CSparse norm function from C to idiomatic Rust.",
           "c": 0.5,
           "s": 8.0,
           "f": [
-            0.4301,
-            0.6767,
-            0.296,
+            0.4998,
+            0.4676,
             0.0,
-            0.0
+            0.0,
+            0.2367
           ]
         },
         {
-          "n": "Vec Scale",
-          "d": "Port the CSparse vec scale function from C to idiomatic Rust.",
+          "n": "Csparse Usolve",
+          "d": "Port the CSparse usolve function from C to idiomatic Rust.",
           "c": 0.5,
           "s": 8.0,
           "f": [
-            0.7385,
-            0.7696,
-            0.8032,
-            0.7746,
-            0.6019
+            0.4249,
+            0.3511,
+            0.0,
+            0.0,
+            0.3736
           ]
         }
       ]
@@ -159,29 +159,29 @@ const CALIBRATOR_DATA = {
       "desc": "Agents build and repair distributed consensus protocols with Dafny proofs of safety properties.",
       "tasks": [
         {
-          "n": "Implement Read Repair",
-          "d": "Implement read repair from the protocol specification.",
-          "c": 0.7,
+          "n": "Fix Snapshot Replication",
+          "d": "Fix bugs in a snapshot replication protocol implementation.",
+          "c": 0.8,
           "s": 8.0,
           "f": [
+            0.3063,
             0.0,
-            1.0,
-            1.0,
             0.0,
-            0.9071
+            0.0,
+            0.0
           ]
         },
         {
-          "n": "Fix Raft Snapshot CRDT",
-          "d": "Fix bugs in a raft snapshot crdt protocol implementation.",
-          "c": 0.85,
+          "n": "Implement BFT Kv Store",
+          "d": "Implement bft kv store from the protocol specification.",
+          "c": 0.7,
           "s": 8.0,
           "f": [
-            0.4669,
-            0.4669,
-            0.7506,
+            0.4071,
+            0.1307,
+            0.0307,
             0.0,
-            0.0
+            0.013
           ]
         },
         {
@@ -191,10 +191,10 @@ const CALIBRATOR_DATA = {
           "s": 8.0,
           "f": [
             1.0,
-            0.0,
             1.0,
             0.0,
-            0.5215
+            0.5215,
+            0.0
           ]
         }
       ]
@@ -205,15 +205,15 @@ const CALIBRATOR_DATA = {
       "desc": "Agents write Cedar authorization policies and prove security properties in Lean 4.",
       "tasks": [
         {
-          "n": "Prove Forbid Overrides Permit",
-          "d": "Prove forbid overrides permit in Lean 4.",
-          "c": 0.15,
+          "n": "Implement And Verify Refactoring",
+          "d": "Prove implement and refactoring safety properties in Dafny.",
+          "c": 0.3,
           "s": 8.0,
           "f": [
+            0.3361,
             0.0,
-            1.0,
             0.0,
-            0.9809,
+            0.0,
             0.0
           ]
         },
@@ -224,10 +224,10 @@ const CALIBRATOR_DATA = {
           "s": 8.0,
           "f": [
             0.5812,
-            0.0,
             0.7244,
-            0.5812,
-            0.0
+            0.0,
+            0.0,
+            0.5812
           ]
         },
         {
@@ -239,8 +239,8 @@ const CALIBRATOR_DATA = {
             1.0,
             1.0,
             1.0,
-            0.6178,
-            0.0
+            0.0,
+            0.6178
           ]
         }
       ]
