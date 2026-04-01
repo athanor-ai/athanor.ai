@@ -599,7 +599,6 @@
             background: var(--accent-light); box-shadow: 0 0 10px var(--accent-glow);
             cursor: grab;
         }
-        .cal-param-label { font-size: 0.8rem; color: var(--accent-light); font-family: 'Courier New', monospace; font-variant-numeric: tabular-nums; min-width: 140px; white-space: nowrap; font-weight: 600; }
 
         /* Bar chart */
         .cal-chart {
@@ -663,6 +662,8 @@
             font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
             color: var(--accent); font-weight: 500; padding-left: 1rem; white-space: nowrap;
         }
+        .cal-env-row:hover td:first-child { color: var(--accent-light); }
+        .cal-env-expanded td:first-child { color: var(--accent-light); }
         .cal-avg-row td { border-top: 2px solid var(--border) !important; font-weight: 700; padding-top: 0.6rem; }
         .cal-avg-row .cal-cell { font-weight: 700; }
         .cal-task-row { cursor: pointer; transition: background 0.15s; }
@@ -770,7 +771,6 @@
             .cal-cell { min-width: 40px; padding: 2px 5px; font-size: 0.65rem; }
             .cal-env-row td { font-size: 0.55rem; padding: 0.75rem 0.4rem 0.25rem; }
             .cal-detail-row td { font-size: 0.65rem; padding: 0.3rem 0.5rem 0.6rem; }
-            .cal-param-label { display: none; }
             .cal-avg-row td:first-child { position: sticky; left: 0; background: rgba(5,5,8,0.95); z-index: 2; }
 
             .contact-section {
@@ -899,7 +899,6 @@
                         <input type="range" id="cal-difficulty" min="0" max="100" value="50">
                         <span class="endpoint">Strict</span>
                     </div>
-                    <span class="cal-param-label" id="cal-params">Per-task defaults</span>
                 </div>
 
                 <div class="cal-chart" id="cal-chart"></div>
@@ -1125,29 +1124,29 @@
             models: ["claude-sonnet-4-6","gemini-2.5-flash","gemini-3.1-pro-preview","kimi-k2.5","mistral-large-3"],
             modelNames: {"claude-sonnet-4-6":"Claude Sonnet 4","gemini-2.5-flash":"Gemini 2.5 Flash","gemini-3.1-pro-preview":"Gemini 3.1 Pro","kimi-k2.5":"Kimi K2.5","mistral-large-3":"Mistral Large 3"},
             envs: [
-                {id:"hw-cbmc",name:"Hardware Verification",tasks:[
-                    {n:"Restoring Div",d:"Fix 3 interacting wiring bugs in a restoring divider. EBMC bounded model checking with 5 SVA properties.",c:0.55,s:8.0,f:[1.0,0.2,1.0,0.2,0.5333]},
-                    {n:"FIFO Credit",d:"Debug credit-based flow control in an async FIFO. 7 formal properties, pipeline hazard interactions.",c:0.75,s:8.0,f:[1.0,0.7143,1.0,0.4286,0.9047]}
+                {id:"hw-cbmc",name:"Hardware Verification",desc:"Agents fix bugs in SystemVerilog designs and prove correctness using bounded model checking.",tasks:[
+                    {n:"Restoring Div",d:"Fix interacting wiring bugs in a restoring divider, verified against formal SVA properties.",c:0.55,s:8.0,f:[1.0,0.2,1.0,0.2,0.5333]},
+                    {n:"FIFO Credit",d:"Debug credit-based flow control in an async FIFO with pipeline hazard interactions.",c:0.75,s:8.0,f:[1.0,0.7143,1.0,0.4286,0.9047]}
                 ]},
-                {id:"lean",name:"Theorem Proving",tasks:[
-                    {n:"Binary Search",d:"Prove correctness of binary search in Lean 4. Requires loop invariants and termination proof.",c:0.55,s:8.0,f:[0.0,1.0,0.3303,0.2004,0.6667]},
-                    {n:"Ackermann L3",d:"Prove properties of the Ackermann function at level 3. Nested recursion and well-founded ordering.",c:0.6,s:10.0,f:[1.0,0.1704,0.5346,0.0,0.0098]}
+                {id:"lean",name:"Theorem Proving",desc:"Agents construct formal proofs in Lean 4, requiring type theory reasoning and termination arguments.",tasks:[
+                    {n:"Binary Search",d:"Prove correctness of binary search with loop invariants and termination proof.",c:0.55,s:8.0,f:[0.0,1.0,0.3303,0.2004,0.6667]},
+                    {n:"Ackermann L3",d:"Prove properties of the Ackermann function using nested recursion and well-founded ordering.",c:0.6,s:10.0,f:[1.0,0.1704,0.5346,0.0,0.0098]}
                 ]},
-                {id:"csparse",name:"Sparse Matrices",tasks:[
-                    {n:"Vec Scale",d:"Implement sparse vector scaling kernel in Rust. Must match reference within floating-point tolerance.",c:0.55,s:8.0,f:[0.6713,0.6547,0.6854,0.4325,0.0]},
-                    {n:"Sparse Norm",d:"Compute sparse matrix norm in Rust. CSC format traversal with numerical stability requirements.",c:0.55,s:8.0,f:[0.5427,0.0,0.5281,0.1346,0.2639]}
+                {id:"csparse",name:"Sparse Matrices",desc:"Agents implement high-performance sparse matrix kernels in Rust, tested against reference implementations.",tasks:[
+                    {n:"Vec Scale",d:"Implement sparse vector scaling kernel matching reference within floating-point tolerance.",c:0.55,s:8.0,f:[0.6713,0.6547,0.6854,0.4325,0.0]},
+                    {n:"Sparse Norm",d:"Compute sparse matrix norm with correct CSC format traversal and numerical stability.",c:0.55,s:8.0,f:[0.5427,0.0,0.5281,0.1346,0.2639]}
                 ]},
-                {id:"congestion",name:"Congestion Control",tasks:[
-                    {n:"CUBIC Start",d:"Fix slow start behavior in CUBIC congestion control. Must pass throughput and fairness gates.",c:0.9,s:8.0,f:[1.0,0.9028,0.903,0.0814,1.0]},
-                    {n:"Westwood+",d:"Implement Westwood+ bandwidth estimation from scratch. Evaluated on high-BDP network scenarios.",c:0.92,s:8.0,f:[0.8966,0.1566,0.7243,0.6941,0.9154]}
+                {id:"congestion",name:"Congestion Control",desc:"Agents implement and fix TCP congestion control algorithms, evaluated on simulated network scenarios.",tasks:[
+                    {n:"CUBIC Start",d:"Fix slow start behavior in CUBIC congestion control to pass throughput and fairness gates.",c:0.9,s:8.0,f:[1.0,0.9028,0.903,0.0814,1.0]},
+                    {n:"Westwood+",d:"Implement Westwood+ bandwidth estimation from scratch for high-BDP network scenarios.",c:0.92,s:8.0,f:[0.8966,0.1566,0.7243,0.6941,0.9154]}
                 ]},
-                {id:"consensus",name:"Distributed Systems",tasks:[
-                    {n:"Snapshot",d:"Fix distributed snapshot algorithm. Must maintain consistent cuts across concurrent message channels.",c:0.85,s:8.0,f:[1.0,1.0,0.6667,0.0,1.0]},
-                    {n:"LSM Compact",d:"Implement LSM-tree compaction with correct merge ordering. Tested against linearizability checker.",c:0.7,s:8.0,f:[1.0,1.0,0.6667,0.0,1.0]}
+                {id:"consensus",name:"Distributed Systems",desc:"Agents build and repair distributed consensus protocols, verified against linearizability and safety checkers.",tasks:[
+                    {n:"Snapshot",d:"Fix distributed snapshot algorithm to maintain consistent cuts across concurrent channels.",c:0.85,s:8.0,f:[1.0,1.0,0.6667,0.0,1.0]},
+                    {n:"LSM Compact",d:"Implement LSM-tree compaction with correct merge ordering and consistency guarantees.",c:0.7,s:8.0,f:[1.0,1.0,0.6667,0.0,1.0]}
                 ]},
-                {id:"cedar",name:"Authorization",tasks:[
-                    {n:"Hospital Auth",d:"Build a complete hospital authorization policy in Cedar. Role hierarchies, department isolation, emergency overrides.",c:0.53,s:9.0,f:[0.7596,0.0976,0.0,0.3867,0.308]},
-                    {n:"Unsafe Attr",d:"Fix unsafe attribute access patterns in Cedar policies. Must pass all 8 security property checks.",c:0.9,s:8.0,f:[1.0,0.4135,0.2757,0.1378,0.4135]}
+                {id:"cedar",name:"Authorization",desc:"Agents write and debug Cedar authorization policies, validated against security property test suites.",tasks:[
+                    {n:"Hospital Auth",d:"Build a complete hospital authorization policy with role hierarchies and emergency overrides.",c:0.53,s:9.0,f:[0.7596,0.0976,0.0,0.3867,0.308]},
+                    {n:"Unsafe Attr",d:"Fix unsafe attribute access patterns in Cedar policies to pass security property checks.",c:0.9,s:8.0,f:[1.0,0.4135,0.2757,0.1378,0.4135]}
                 ]}
             ]
         };
@@ -1245,7 +1244,6 @@
 
         function calOnDrag(val) {
             const p = calDifficultyToParams(val);
-            document.getElementById('cal-params').textContent = 'center=' + p.center.toFixed(2) + '  scale=' + p.scale;
             for (const env of CALIBRATOR_DATA.envs) {
                 for (const task of env.tasks) {
                     task._c = p.center;
@@ -1282,7 +1280,6 @@
                         i++;
                     }
                 }
-                document.getElementById('cal-params').textContent = 'Per-task defaults';
                 calRender();
             }
         }
@@ -1340,9 +1337,10 @@
             // Build heatmap body
             const tbody = document.getElementById('cal-tbody');
             for (const env of D.envs) {
-                // Env separator row — first cell has name, rest are empty
+                // Env separator row — clickable to expand description
                 const sepTr = document.createElement('tr');
                 sepTr.className = 'cal-env-row';
+                sepTr.style.cursor = 'pointer';
                 const sepTd = document.createElement('td');
                 sepTd.textContent = env.name;
                 sepTr.appendChild(sepTd);
@@ -1350,6 +1348,21 @@
                     sepTr.appendChild(document.createElement('td'));
                 }
                 tbody.appendChild(sepTr);
+
+                // Env description row (hidden by default)
+                const envDescTr = document.createElement('tr');
+                envDescTr.className = 'cal-detail-row';
+                const envDescTd = document.createElement('td');
+                envDescTd.setAttribute('colspan', models.length + 1);
+                envDescTd.textContent = env.desc;
+                envDescTr.appendChild(envDescTd);
+                tbody.appendChild(envDescTr);
+
+                sepTr.addEventListener('click', function() {
+                    const showing = envDescTr.classList.contains('open');
+                    envDescTr.classList.toggle('open', !showing);
+                    sepTr.classList.toggle('cal-env-expanded', !showing);
+                });
 
                 for (const task of env.tasks) {
                     const tr = document.createElement('tr');
