@@ -21,16 +21,16 @@ const CALIBRATOR_DATA = {
       "desc": "Agents fix bugs in SystemVerilog designs and write formal assertions, verified by EBMC bounded model checker.",
       "tasks": [
         {
-          "n": "Fix TLB Ctrl",
-          "d": "Debug a tlb ctrl circuit until all formal properties prove.",
-          "c": 0.75,
-          "s": 10.0,
+          "n": "Fix ARB Lock",
+          "d": "Debug a arb lock circuit until all formal properties prove.",
+          "c": 0.65,
+          "s": 8.0,
           "f": [
-            null,
+            0.1493,
             1.0,
-            0.0243,
-            0.0,
-            1.0
+            0.1493,
+            0.1493,
+            0.1493
           ]
         },
         {
