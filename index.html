@@ -1125,28 +1125,28 @@
             modelNames: {"claude-sonnet-4-6":"Claude Sonnet 4","gemini-2.5-flash":"Gemini 2.5 Flash","gemini-3.1-pro-preview":"Gemini 3.1 Pro","kimi-k2.5":"Kimi K2.5","mistral-large-3":"Mistral Large 3"},
             envs: [
                 {id:"hw-cbmc",name:"Hardware Verification",desc:"Agents fix bugs in SystemVerilog designs and prove correctness using bounded model checking.",tasks:[
-                    {n:"Restoring Div",d:"Fix interacting wiring bugs in a restoring divider, verified against formal SVA properties.",c:0.55,s:8.0,f:[1.0,0.2,1.0,0.2,0.5333]},
-                    {n:"FIFO Credit",d:"Debug credit-based flow control in an async FIFO with pipeline hazard interactions.",c:0.75,s:8.0,f:[1.0,0.7143,1.0,0.4286,0.9047]}
+                    {n:"Restoring Div",d:"Fix multiple interacting bugs in a hardware divider, verified against formal properties.",c:0.55,s:8.0,f:[1.0,0.2,1.0,0.2,0.5333]},
+                    {n:"FIFO Credit",d:"Debug flow control logic in a hardware FIFO with subtle pipeline interactions.",c:0.75,s:8.0,f:[1.0,0.7143,1.0,0.4286,0.9047]}
                 ]},
                 {id:"lean",name:"Theorem Proving",desc:"Agents construct formal proofs in Lean 4, requiring type theory reasoning and termination arguments.",tasks:[
-                    {n:"Binary Search",d:"Prove correctness of binary search with loop invariants and termination proof.",c:0.55,s:8.0,f:[0.0,1.0,0.3303,0.2004,0.6667]},
-                    {n:"Ackermann L3",d:"Prove properties of the Ackermann function using nested recursion and well-founded ordering.",c:0.6,s:10.0,f:[1.0,0.1704,0.5346,0.0,0.0098]}
+                    {n:"Binary Search",d:"Prove correctness of a search algorithm, requiring invariants and a termination argument.",c:0.55,s:8.0,f:[0.0,1.0,0.3303,0.2004,0.6667]},
+                    {n:"Ackermann L3",d:"Prove properties of a deeply recursive function with complex termination structure.",c:0.6,s:10.0,f:[1.0,0.1704,0.5346,0.0,0.0098]}
                 ]},
                 {id:"csparse",name:"Systems Migration",desc:"Agents migrate C libraries to idiomatic Rust, validated against the original test suites and behavior.",tasks:[
-                    {n:"Vec Scale",d:"Implement sparse vector scaling kernel matching reference within floating-point tolerance.",c:0.55,s:8.0,f:[0.6713,0.6547,0.6854,0.4325,0.0]},
-                    {n:"Sparse Norm",d:"Compute sparse matrix norm with correct CSC format traversal and numerical stability.",c:0.55,s:8.0,f:[0.5427,0.0,0.5281,0.1346,0.2639]}
+                    {n:"Vec Scale",d:"Migrate a vector operation from C to Rust, matching the original behavior and test suite.",c:0.55,s:8.0,f:[0.6713,0.6547,0.6854,0.4325,0.0]},
+                    {n:"Matrix Norm",d:"Rewrite a matrix computation in Rust with correct traversal and numerical stability.",c:0.55,s:8.0,f:[0.5427,0.0,0.5281,0.1346,0.2639]}
                 ]},
                 {id:"congestion",name:"Congestion Control",desc:"Agents implement and fix TCP congestion control algorithms, evaluated on simulated network scenarios.",tasks:[
-                    {n:"CUBIC Start",d:"Fix slow start behavior in CUBIC congestion control to pass throughput and fairness gates.",c:0.9,s:8.0,f:[1.0,0.9028,0.903,0.0814,1.0]},
-                    {n:"Westwood+",d:"Implement Westwood+ bandwidth estimation from scratch for high-BDP network scenarios.",c:0.92,s:8.0,f:[0.8966,0.1566,0.7243,0.6941,0.9154]}
+                    {n:"CUBIC Start",d:"Fix slow start behavior in a congestion control algorithm to meet performance targets.",c:0.9,s:8.0,f:[1.0,0.9028,0.903,0.0814,1.0]},
+                    {n:"Westwood+",d:"Implement a bandwidth estimation algorithm from scratch, evaluated on realistic network conditions.",c:0.92,s:8.0,f:[0.8966,0.1566,0.7243,0.6941,0.9154]}
                 ]},
                 {id:"consensus",name:"Distributed Systems",desc:"Agents build and repair distributed consensus protocols, verified against linearizability and safety checkers.",tasks:[
-                    {n:"Snapshot",d:"Fix distributed snapshot algorithm to maintain consistent cuts across concurrent channels.",c:0.85,s:8.0,f:[1.0,1.0,0.6667,0.0,1.0]},
-                    {n:"LSM Compact",d:"Implement LSM-tree compaction with correct merge ordering and consistency guarantees.",c:0.7,s:8.0,f:[1.0,1.0,0.6667,0.0,1.0]}
+                    {n:"Snapshot",d:"Fix a distributed snapshot algorithm to maintain consistency across concurrent processes.",c:0.85,s:8.0,f:[1.0,1.0,0.6667,0.0,1.0]},
+                    {n:"LSM Compact",d:"Implement a storage compaction routine with correct ordering and consistency guarantees.",c:0.7,s:8.0,f:[1.0,1.0,0.6667,0.0,1.0]}
                 ]},
                 {id:"cedar",name:"Authorization",desc:"Agents write and debug Cedar authorization policies, validated against security property test suites.",tasks:[
-                    {n:"Hospital Auth",d:"Build a complete hospital authorization policy with role hierarchies and emergency overrides.",c:0.53,s:9.0,f:[0.7596,0.0976,0.0,0.3867,0.308]},
-                    {n:"Unsafe Attr",d:"Fix unsafe attribute access patterns in Cedar policies to pass security property checks.",c:0.9,s:8.0,f:[1.0,0.4135,0.2757,0.1378,0.4135]}
+                    {n:"Hospital Auth",d:"Build a complete authorization policy with role hierarchies and emergency overrides.",c:0.53,s:9.0,f:[0.7596,0.0976,0.0,0.3867,0.308]},
+                    {n:"Unsafe Attr",d:"Fix unsafe access patterns in authorization policies to pass security checks.",c:0.9,s:8.0,f:[1.0,0.4135,0.2757,0.1378,0.4135]}
                 ]}
             ]
         };
