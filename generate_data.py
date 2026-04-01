@@ -92,24 +92,61 @@ def task_display_name(task_id: str) -> str:
     return " ".join(result)
 
 
-def task_description(task_id: str, config: dict) -> str:
-    """Generate a short description from task config."""
+def task_description(task_id: str, config: dict, env_id: str) -> str:
+    """Generate a meaningful description from task ID, config, and env context."""
     tt = config.get("task_type", "")
+    name = task_id.replace("-", " ").replace("_", " ")
+
+    # Formal verification tasks -- specific per verifier
     if "assertion" in tt or "write_assertion" in tt:
-        return "Write formal SVA assertions to verify hardware correctness properties."
+        return f"Write SVA assertions for a {name.replace('write assertions ', '')} module and verify with EBMC."
     if "verify" in tt or "formal" in tt:
-        return "Fill in formal proof obligations so the verifier accepts."
+        subject = name.replace("verify ", "")
+        return f"Prove {subject} safety properties in Dafny."
     if "verus" in tt:
-        return "Add Verus verification annotations to prove Rust code correct."
+        subject = name.replace("verus ", "").replace(" proof", "")
+        return f"Add Verus verification annotations to prove {subject} operations correct."
     if "fill_sorry" in tt:
-        return "Replace sorry placeholders with valid Lean 4 proofs."
-    if "fix" in tt:
-        return "Find and fix bugs in the implementation until all tests pass."
-    if "implement" in tt:
-        return "Implement the algorithm from scratch to meet the specification."
-    if "tune" in tt:
-        return "Tune parameters to optimize performance on target workloads."
-    return "Complete the task to pass the automated evaluation."
+        subject = name.replace("fix proof errors", "proof repair").replace("fix wrong lemma", "lemma repair")
+        return f"Construct Lean 4 proofs for {subject}."
+
+    # Domain-specific descriptions
+    if env_id == "hw-cbmc":
+        if "fix" in tt:
+            circuit = name.replace("fix ", "")
+            return f"Debug a {circuit} circuit until all formal properties prove."
+        return f"Implement a {name.replace('implement ', '')} circuit to satisfy formal properties."
+
+    if env_id == "consensus":
+        if "fix" in tt:
+            protocol = name.replace("fix ", "")
+            return f"Fix bugs in a {protocol} protocol implementation."
+        return f"Implement {name.replace('implement ', '')} from the protocol specification."
+
+    if env_id == "congestion":
+        if "fix" in tt:
+            algo = name.replace("fix ", "")
+            return f"Fix {algo} congestion control to meet throughput and fairness targets."
+        if "implement" in tt:
+            algo = name.replace("implement ", "")
+            return f"Implement {algo} congestion control from scratch."
+        if "tune" in tt:
+            return f"Tune {name.replace('tune ', '')} parameters for target network conditions."
+        return f"Complete the {name} congestion control task."
+
+    if env_id == "csparse":
+        subject = name.replace("csparse ", "")
+        return f"Port the CSparse {subject} function from C to idiomatic Rust."
+
+    if env_id == "cedar":
+        if "fix" in tt:
+            return f"Fix authorization policy bugs in {name.replace('fix ', '')}."
+        if "prove" in name.lower():
+            subject = name.replace("prove ", "")
+            return f"Prove {subject} in Lean 4."
+        return f"Build authorization policies for {name.replace('implement ', '')}."
+
+    return f"Complete the {name} task."
 
 
 def load_scores(env_dir: Path) -> dict:
@@ -156,6 +193,54 @@ def load_configs(env_dir: Path) -> dict:
     return configs
 
 
+def _select_showcase_tasks(tasks: list, n: int = 3) -> list:
+    """Select n tasks with maximum difficulty spread for the website.
+
+    Pick one from each bucket: hard (Sonnet < 0.3), medium (0.3-0.7), easy (> 0.7).
+    Prefer tasks with scores from more models. If a bucket is empty, fill from
+    adjacent buckets.
+    """
+    if len(tasks) <= n:
+        return tasks
+
+    # Score tasks by Sonnet (index 0) or first available model
+    def sonnet_score(t):
+        for s in t["f"]:
+            if s is not None:
+                return s
+        return 0.5  # default to medium
+
+    # Also prefer tasks with more model coverage and more spread
+    def spread(t):
+        valid = [s for s in t["f"] if s is not None]
+        if len(valid) < 2:
+            return 0
+        return max(valid) - min(valid)
+
+    hard = [t for t in tasks if sonnet_score(t) < 0.3]
+    medium = [t for t in tasks if 0.3 <= sonnet_score(t) <= 0.7]
+    easy = [t for t in tasks if sonnet_score(t) > 0.7]
+
+    # Sort each bucket by spread (more spread = more interesting)
+    hard.sort(key=spread, reverse=True)
+    medium.sort(key=spread, reverse=True)
+    easy.sort(key=spread, reverse=True)
+
+    selected = []
+    # Pick one from each bucket
+    for bucket in [hard, medium, easy]:
+        if bucket and len(selected) < n:
+            selected.append(bucket[0])
+
+    # Fill remaining slots from any bucket
+    remaining = [t for t in tasks if t not in selected]
+    remaining.sort(key=spread, reverse=True)
+    while len(selected) < n and remaining:
+        selected.append(remaining.pop(0))
+
+    return selected
+
+
 def generate_data(envs_dir: Path) -> dict:
     """Generate the full CALIBRATOR_DATA structure."""
     output = {
@@ -187,28 +272,31 @@ def generate_data(envs_dir: Path) -> dict:
                 s = task_scores.get(model)
                 f.append(round(s, 4) if s is not None else None)
 
-            # Skip tasks with fewer than 2 model scores (looks bad on website)
+            # Skip tasks with fewer than 2 model scores
             scored_count = sum(1 for s in f if s is not None)
             if scored_count < 2:
                 continue
 
             tasks.append({
                 "n": task_display_name(task_id),
-                "d": task_description(task_id, config),
+                "d": task_description(task_id, config, env_meta["id"]),
                 "c": center,
                 "s": scale,
                 "f": f,
             })
 
+        # Select 3 best tasks: pick for maximum difficulty spread
+        # (one easy, one medium, one hard based on Sonnet score)
+        selected = _select_showcase_tasks(tasks, n=3)
+
         env_data = {
             "id": env_meta["id"],
             "name": env_meta["name"],
             "desc": env_meta["desc"],
-            "tasks": tasks,
+            "tasks": selected,
         }
         output["envs"].append(env_data)
-        scored = sum(1 for t in tasks if any(s is not None for s in t["f"]))
-        print(f"  {env_meta['id']}: {len(tasks)} tasks ({scored} with scores)")
+        print(f"  {env_meta['id']}: {len(selected)}/{len(tasks)} tasks selected")
 
     return output
 
