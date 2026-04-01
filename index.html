@@ -634,19 +634,19 @@
         }
 
         /* Heatmap */
-        .cal-heatmap-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); background: var(--bg-card); }
-        .cal-heatmap { width: 100%; border-collapse: collapse; font-size: 0.75rem; table-layout: fixed; }
+        .cal-heatmap-wrap { overflow-x: auto; border-radius: 12px; border: 0.5px solid var(--border); background: var(--bg-card); }
+        .cal-heatmap { width: 100%; border-collapse: collapse; font-size: 0.75rem; table-layout: auto; }
         .cal-heatmap th {
             padding: 0.75rem 0.5rem; text-align: center; font-size: 0.7rem;
             font-weight: 500; color: var(--text-dim); letter-spacing: 0.02em;
             border-bottom: 1px solid var(--border); background: rgba(255,255,255,0.02);
         }
-        .cal-heatmap th:first-child { text-align: left; padding-left: 1rem; width: 180px; }
+        .cal-heatmap th:first-child { text-align: left; padding-left: 1rem; min-width: 180px; width: auto; }
         .cal-heatmap td {
             padding: 0.4rem 0.5rem; text-align: center;
             border-bottom: 1px solid rgba(255,255,255,0.03);
         }
-        .cal-heatmap td:first-child { text-align: left; padding-left: 1rem; font-weight: 500; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .cal-heatmap td:first-child { text-align: left; padding-left: 1rem; font-weight: 500; color: var(--text); white-space: nowrap; }
         .cal-heatmap tr:last-child td { border-bottom: none; }
         .cal-cell {
             display: inline-block; border-radius: 4px; padding: 3px 8px; min-width: 48px;
