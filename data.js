@@ -282,19 +282,6 @@ const CALIBRATOR_DATA = {
           ]
         },
         {
-          "n": "Write Assertions Tasksched",
-          "d": "Write formal SVA assertions to verify hardware correctness properties.",
-          "c": 0.55,
-          "s": 8.0,
-          "f": [
-            null,
-            null,
-            null,
-            null,
-            null
-          ]
-        },
-        {
           "n": "Write Assertions Txnmon",
           "d": "Write formal SVA assertions to verify hardware correctness properties.",
           "c": 0.55,
@@ -334,10 +321,10 @@ const CALIBRATOR_DATA = {
           "s": 10.0,
           "f": [
             1.0,
-            0.031,
+            0.5079,
             1.0,
-            0.0,
-            null
+            1.0,
+            0.0
           ]
         },
         {
@@ -348,35 +335,9 @@ const CALIBRATOR_DATA = {
           "f": [
             0.0,
             1.0,
-            0.6514,
-            0.0764,
-            null
-          ]
-        },
-        {
-          "n": "Church Rosser",
-          "d": "Replace sorry placeholders with valid Lean 4 proofs.",
-          "c": 0.45,
-          "s": 8.0,
-          "f": [
-            null,
-            null,
-            null,
-            null,
-            null
-          ]
-        },
-        {
-          "n": "Compiler Correctness",
-          "d": "Replace sorry placeholders with valid Lean 4 proofs.",
-          "c": 0.45,
-          "s": 8.0,
-          "f": [
-            null,
-            null,
-            null,
-            null,
-            null
+            1.0,
+            1.0,
+            0.0
           ]
         },
         {
@@ -385,11 +346,11 @@ const CALIBRATOR_DATA = {
           "c": 0.55,
           "s": 8.0,
           "f": [
-            0.3247,
-            0.3483,
-            0.3247,
-            0.3247,
-            null
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            0.2282
           ]
         },
         {
@@ -402,7 +363,7 @@ const CALIBRATOR_DATA = {
             1.0,
             1.0,
             1.0,
-            null
+            0.0739
           ]
         },
         {
@@ -414,8 +375,8 @@ const CALIBRATOR_DATA = {
             1.0,
             1.0,
             1.0,
-            0.2161,
-            null
+            0.2062,
+            0.7753
           ]
         },
         {
@@ -428,7 +389,7 @@ const CALIBRATOR_DATA = {
             1.0,
             1.0,
             1.0,
-            null
+            0.9187
           ]
         },
         {
@@ -437,11 +398,11 @@ const CALIBRATOR_DATA = {
           "c": 0.55,
           "s": 8.0,
           "f": [
-            0.7374,
-            0.7374,
-            0.7374,
-            0.7374,
-            null
+            0.734,
+            0.734,
+            0.734,
+            0.734,
+            0.734
           ]
         },
         {
@@ -451,10 +412,10 @@ const CALIBRATOR_DATA = {
           "s": 8.0,
           "f": [
             1.0,
-            0.0,
             1.0,
-            0.0,
-            null
+            1.0,
+            1.0,
+            0.9037
           ]
         },
         {
@@ -464,10 +425,10 @@ const CALIBRATOR_DATA = {
           "s": 8.0,
           "f": [
             1.0,
-            0.2378,
+            0.6102,
             1.0,
-            0.2378,
-            null
+            1.0,
+            0.0739
           ]
         },
         {
@@ -477,10 +438,10 @@ const CALIBRATOR_DATA = {
           "s": 8.0,
           "f": [
             1.0,
-            0.0608,
             1.0,
-            0.0037,
-            null
+            1.0,
+            1.0,
+            0.9037
           ]
         },
         {
@@ -493,7 +454,7 @@ const CALIBRATOR_DATA = {
             1.0,
             1.0,
             1.0,
-            null
+            0.1436
           ]
         },
         {
@@ -503,10 +464,10 @@ const CALIBRATOR_DATA = {
           "s": 8.0,
           "f": [
             0.0,
-            0.4397,
-            0.6873,
-            0.2231,
-            null
+            0.93,
+            1.0,
+            1.0,
+            0.4049
           ]
         },
         {
@@ -515,11 +476,11 @@ const CALIBRATOR_DATA = {
           "c": 0.55,
           "s": 8.0,
           "f": [
-            0.6633,
-            0.6633,
-            0.1534,
-            0.6633,
-            null
+            0.6591,
+            1.0,
+            1.0,
+            1.0,
+            0.1436
           ]
         },
         {
@@ -529,10 +490,10 @@ const CALIBRATOR_DATA = {
           "s": 8.0,
           "f": [
             1.0,
-            0.0052,
-            0.0,
-            0.4123,
-            null
+            1.0,
+            1.0,
+            1.0,
+            0.0
           ]
         },
         {
@@ -542,10 +503,10 @@ const CALIBRATOR_DATA = {
           "s": 8.0,
           "f": [
             1.0,
-            0.005,
-            0.1738,
-            0.0,
-            null
+            1.0,
+            1.0,
+            1.0,
+            1.0
           ]
         },
         {
@@ -554,11 +515,11 @@ const CALIBRATOR_DATA = {
           "c": 0.55,
           "s": 8.0,
           "f": [
-            0.9308,
-            0.1543,
-            0.0903,
-            0.0001,
-            null
+            0.93,
+            0.93,
+            1.0,
+            1.0,
+            1.0
           ]
         },
         {
@@ -567,11 +528,11 @@ const CALIBRATOR_DATA = {
           "c": 0.5,
           "s": 8.0,
           "f": [
-            0.7026,
-            0.0052,
+            0.6971,
             1.0,
-            0.0847,
-            null
+            1.0,
+            1.0,
+            0.6971
           ]
         },
         {
@@ -581,10 +542,10 @@ const CALIBRATOR_DATA = {
           "s": 8.0,
           "f": [
             1.0,
-            0.0047,
+            0.1436,
             1.0,
-            0.0,
-            null
+            1.0,
+            0.0
           ]
         },
         {
@@ -594,10 +555,10 @@ const CALIBRATOR_DATA = {
           "s": 10.0,
           "f": [
             1.0,
-            0.0003,
+            0.272,
             1.0,
-            0.0,
-            null
+            1.0,
+            0.272
           ]
         },
         {
@@ -607,36 +568,10 @@ const CALIBRATOR_DATA = {
           "s": 8.0,
           "f": [
             1.0,
-            0.0001,
-            0.0094,
-            0.0,
-            null
-          ]
-        },
-        {
-          "n": "Red Black Invariant",
-          "d": "Replace sorry placeholders with valid Lean 4 proofs.",
-          "c": 0.45,
-          "s": 8.0,
-          "f": [
-            null,
-            null,
-            null,
-            null,
-            null
-          ]
-        },
-        {
-          "n": "Regex Derivative",
-          "d": "Replace sorry placeholders with valid Lean 4 proofs.",
-          "c": 0.45,
-          "s": 8.0,
-          "f": [
-            null,
-            null,
-            null,
-            null,
-            null
+            0.734,
+            1.0,
+            1.0,
+            0.0
           ]
         },
         {
@@ -645,11 +580,11 @@ const CALIBRATOR_DATA = {
           "c": 0.6,
           "s": 10.0,
           "f": [
-            0.4383,
-            0.2855,
-            0.4383,
-            0.4244,
-            null
+            1.0,
+            0.672,
+            1.0,
+            1.0,
+            0.5714
           ]
         },
         {
@@ -658,11 +593,11 @@ const CALIBRATOR_DATA = {
           "c": 0.6,
           "s": 10.0,
           "f": [
-            0.4244,
-            0.2855,
-            0.2765,
-            0.2765,
-            null
+            1.0,
+            0.672,
+            1.0,
+            1.0,
+            0.0
           ]
         },
         {
@@ -672,10 +607,10 @@ const CALIBRATOR_DATA = {
           "s": 10.0,
           "f": [
             1.0,
-            0.0,
-            0.0608,
-            0.0,
-            null
+            1.0,
+            1.0,
+            1.0,
+            1.0
           ]
         },
         {
@@ -684,11 +619,11 @@ const CALIBRATOR_DATA = {
           "c": 0.55,
           "s": 8.0,
           "f": [
-            0.7374,
+            0.734,
             1.0,
             1.0,
-            0.0498,
-            null
+            1.0,
+            0.0
           ]
         },
         {
@@ -697,24 +632,11 @@ const CALIBRATOR_DATA = {
           "c": 0.55,
           "s": 8.0,
           "f": [
-            0.4123,
-            0.4123,
+            0.4049,
+            0.4049,
             1.0,
-            0.4123,
-            null
-          ]
-        },
-        {
-          "n": "Well Founded Order",
-          "d": "Replace sorry placeholders with valid Lean 4 proofs.",
-          "c": 0.45,
-          "s": 8.0,
-          "f": [
-            null,
-            null,
-            null,
-            null,
-            null
+            0.4049,
+            0.0
           ]
         }
       ]
@@ -734,7 +656,7 @@ const CALIBRATOR_DATA = {
             0.6767,
             0.296,
             0.0,
-            null
+            0.0
           ]
         },
         {
@@ -747,7 +669,7 @@ const CALIBRATOR_DATA = {
             0.1679,
             0.1631,
             0.1624,
-            null
+            0.1539
           ]
         },
         {
@@ -760,7 +682,7 @@ const CALIBRATOR_DATA = {
             0.2387,
             0.3443,
             0.0,
-            null
+            0.2756
           ]
         },
         {
@@ -773,7 +695,7 @@ const CALIBRATOR_DATA = {
             0.4851,
             0.2723,
             0.2731,
-            null
+            0.3466
           ]
         },
         {
@@ -786,7 +708,7 @@ const CALIBRATOR_DATA = {
             0.2693,
             0.3046,
             0.2727,
-            null
+            0.0
           ]
         },
         {
@@ -799,7 +721,7 @@ const CALIBRATOR_DATA = {
             0.0,
             0.0,
             0.1716,
-            null
+            0.0
           ]
         },
         {
@@ -812,7 +734,7 @@ const CALIBRATOR_DATA = {
             0.3171,
             0.3145,
             0.3005,
-            null
+            0.0
           ]
         },
         {
@@ -825,7 +747,7 @@ const CALIBRATOR_DATA = {
             0.2616,
             0.469,
             0.2866,
-            null
+            0.0
           ]
         },
         {
@@ -838,7 +760,7 @@ const CALIBRATOR_DATA = {
             0.304,
             0.3285,
             0.2304,
-            null
+            0.0
           ]
         },
         {
@@ -851,7 +773,7 @@ const CALIBRATOR_DATA = {
             0.0,
             0.0,
             0.0,
-            null
+            0.0
           ]
         },
         {
@@ -864,7 +786,7 @@ const CALIBRATOR_DATA = {
             0.0,
             0.0861,
             0.1104,
-            null
+            0.0
           ]
         },
         {
@@ -877,7 +799,7 @@ const CALIBRATOR_DATA = {
             0.0,
             0.4676,
             0.2367,
-            null
+            0.0
           ]
         },
         {
@@ -890,7 +812,7 @@ const CALIBRATOR_DATA = {
             0.3139,
             0.6595,
             0.2884,
-            null
+            0.0
           ]
         },
         {
@@ -903,7 +825,7 @@ const CALIBRATOR_DATA = {
             0.0,
             0.2157,
             0.186,
-            null
+            0.0
           ]
         },
         {
@@ -916,7 +838,7 @@ const CALIBRATOR_DATA = {
             0.0,
             0.2035,
             0.278,
-            null
+            0.0
           ]
         },
         {
@@ -929,7 +851,7 @@ const CALIBRATOR_DATA = {
             0.1229,
             0.1367,
             0.13,
-            null
+            0.0
           ]
         },
         {
@@ -942,7 +864,7 @@ const CALIBRATOR_DATA = {
             0.0,
             0.1158,
             0.0824,
-            null
+            0.0
           ]
         },
         {
@@ -955,7 +877,7 @@ const CALIBRATOR_DATA = {
             0.0,
             0.4167,
             0.2772,
-            null
+            0.0
           ]
         },
         {
@@ -968,7 +890,7 @@ const CALIBRATOR_DATA = {
             0.0,
             0.3511,
             0.3736,
-            null
+            0.0
           ]
         },
         {
@@ -981,7 +903,7 @@ const CALIBRATOR_DATA = {
             0.3946,
             0.51,
             0.3851,
-            null
+            0.0
           ]
         },
         {
@@ -994,7 +916,7 @@ const CALIBRATOR_DATA = {
             0.2879,
             0.3506,
             0.0,
-            null
+            0.2681
           ]
         },
         {
@@ -1007,7 +929,7 @@ const CALIBRATOR_DATA = {
             0.3373,
             0.3419,
             0.3499,
-            null
+            0.2711
           ]
         },
         {
@@ -1020,7 +942,7 @@ const CALIBRATOR_DATA = {
             0.2788,
             0.208,
             0.2712,
-            null
+            0.0
           ]
         },
         {
@@ -1033,7 +955,7 @@ const CALIBRATOR_DATA = {
             0.5561,
             0.4791,
             0.4534,
-            null
+            0.0
           ]
         },
         {
@@ -1046,7 +968,7 @@ const CALIBRATOR_DATA = {
             0.7696,
             0.8032,
             0.7746,
-            null
+            0.6019
           ]
         },
         {
@@ -1056,10 +978,10 @@ const CALIBRATOR_DATA = {
           "s": 8.0,
           "f": [
             null,
-            null,
-            null,
-            null,
-            null
+            0.0,
+            0.0,
+            0.0,
+            0.0
           ]
         },
         {
@@ -1069,10 +991,10 @@ const CALIBRATOR_DATA = {
           "s": 8.0,
           "f": [
             null,
-            null,
-            null,
-            null,
-            null
+            0.0,
+            0.0,
+            0.0,
+            0.0
           ]
         },
         {
@@ -1082,10 +1004,10 @@ const CALIBRATOR_DATA = {
           "s": 8.0,
           "f": [
             null,
-            null,
-            null,
-            null,
-            null
+            0.0,
+            0.0,
+            0.0,
+            0.0
           ]
         }
       ]
@@ -1094,320 +1016,7 @@ const CALIBRATOR_DATA = {
       "id": "congestion",
       "name": "Congestion Control",
       "desc": "Agents implement and fix TCP congestion control algorithms with Dafny formal verification of protocol safety.",
-      "tasks": [
-        {
-          "n": "Fix AIMD",
-          "d": "Find and fix bugs in the implementation until all tests pass.",
-          "c": 0.85,
-          "s": 8.0,
-          "f": [
-            null,
-            null,
-            null,
-            null,
-            null
-          ]
-        },
-        {
-          "n": "Fix Competing Flows",
-          "d": "Find and fix bugs in the implementation until all tests pass.",
-          "c": 0.9,
-          "s": 8.0,
-          "f": [
-            null,
-            null,
-            null,
-            null,
-            null
-          ]
-        },
-        {
-          "n": "Fix Cubic Slow Start",
-          "d": "Find and fix bugs in the implementation until all tests pass.",
-          "c": 0.9,
-          "s": 8.0,
-          "f": [
-            null,
-            null,
-            null,
-            null,
-            null
-          ]
-        },
-        {
-          "n": "Fix Cubic Units",
-          "d": "Find and fix bugs in the implementation until all tests pass.",
-          "c": 0.98,
-          "s": 8.0,
-          "f": [
-            null,
-            null,
-            null,
-            null,
-            null
-          ]
-        },
-        {
-          "n": "Fix Fairness Under Competition",
-          "d": "Find and fix bugs in the implementation until all tests pass.",
-          "c": 0.91,
-          "s": 8.0,
-          "f": [
-            null,
-            null,
-            null,
-            null,
-            null
-          ]
-        },
-        {
-          "n": "Fix Recovery Deadlock",
-          "d": "Find and fix bugs in the implementation until all tests pass.",
-          "c": 0.85,
-          "s": 8.0,
-          "f": [
-            null,
-            null,
-            null,
-            null,
-            null
-          ]
-        },
-        {
-          "n": "Fix Slow Convergence",
-          "d": "Find and fix bugs in the implementation until all tests pass.",
-          "c": 0.7,
-          "s": 8.0,
-          "f": [
-            null,
-            null,
-            null,
-            null,
-            null
-          ]
-        },
-        {
-          "n": "Fix Stale Ssthresh",
-          "d": "Find and fix bugs in the implementation until all tests pass.",
-          "c": 0.9,
-          "s": 8.0,
-          "f": [
-            null,
-            null,
-            null,
-            null,
-            null
-          ]
-        },
-        {
-          "n": "Fix Three Bugs",
-          "d": "Find and fix bugs in the implementation until all tests pass.",
-          "c": 0.93,
-          "s": 8.0,
-          "f": [
-            null,
-            null,
-            null,
-            null,
-            null
-          ]
-        },
-        {
-          "n": "Fix Timeout Handling",
-          "d": "Find and fix bugs in the implementation until all tests pass.",
-          "c": 0.96,
-          "s": 8.0,
-          "f": [
-            null,
-            null,
-            null,
-            null,
-            null
-          ]
-        },
-        {
-          "n": "Implement BBR",
-          "d": "Implement the algorithm from scratch to meet the specification.",
-          "c": 0.7,
-          "s": 8.0,
-          "f": [
-            null,
-            null,
-            null,
-            null,
-            null
-          ]
-        },
-        {
-          "n": "Implement Compound",
-          "d": "Implement the algorithm from scratch to meet the specification.",
-          "c": 0.7,
-          "s": 8.0,
-          "f": [
-            null,
-            null,
-            null,
-            null,
-            null
-          ]
-        },
-        {
-          "n": "Implement Cubic",
-          "d": "Implement the algorithm from scratch to meet the specification.",
-          "c": 0.74,
-          "s": 8.0,
-          "f": [
-            null,
-            null,
-            null,
-            null,
-            null
-          ]
-        },
-        {
-          "n": "Implement Fast Recovery",
-          "d": "Implement the algorithm from scratch to meet the specification.",
-          "c": 0.94,
-          "s": 8.0,
-          "f": [
-            null,
-            null,
-            null,
-            null,
-            null
-          ]
-        },
-        {
-          "n": "Implement Ledbat",
-          "d": "Implement the algorithm from scratch to meet the specification.",
-          "c": 0.9,
-          "s": 8.0,
-          "f": [
-            null,
-            null,
-            null,
-            null,
-            null
-          ]
-        },
-        {
-          "n": "Implement Loss Differentiated",
-          "d": "Implement the algorithm from scratch to meet the specification.",
-          "c": 0.94,
-          "s": 8.0,
-          "f": [
-            null,
-            null,
-            null,
-            null,
-            null
-          ]
-        },
-        {
-          "n": "Implement Mult Decrease",
-          "d": "Implement the algorithm from scratch to meet the specification.",
-          "c": 0.85,
-          "s": 8.0,
-          "f": [
-            null,
-            null,
-            null,
-            null,
-            null
-          ]
-        },
-        {
-          "n": "Implement PCC",
-          "d": "Implement the algorithm from scratch to meet the specification.",
-          "c": 0.5,
-          "s": 8.0,
-          "f": [
-            null,
-            null,
-            null,
-            null,
-            null
-          ]
-        },
-        {
-          "n": "Implement Vegas",
-          "d": "Implement the algorithm from scratch to meet the specification.",
-          "c": 0.94,
-          "s": 8.0,
-          "f": [
-            null,
-            null,
-            null,
-            null,
-            null
-          ]
-        },
-        {
-          "n": "Implement Westwood",
-          "d": "Implement the algorithm from scratch to meet the specification.",
-          "c": 0.92,
-          "s": 8.0,
-          "f": [
-            null,
-            null,
-            null,
-            null,
-            null
-          ]
-        },
-        {
-          "n": "Tune High Bdp",
-          "d": "Tune parameters to optimize performance on target workloads.",
-          "c": 0.97,
-          "s": 10.0,
-          "f": [
-            null,
-            null,
-            null,
-            null,
-            null
-          ]
-        },
-        {
-          "n": "Verify AIMD Safety",
-          "d": "Fill in formal proof obligations so the verifier accepts.",
-          "c": 0.5,
-          "s": 8.0,
-          "f": [
-            null,
-            null,
-            null,
-            null,
-            null
-          ]
-        },
-        {
-          "n": "Verify Flow Fairness",
-          "d": "Fill in formal proof obligations so the verifier accepts.",
-          "c": 0.5,
-          "s": 8.0,
-          "f": [
-            null,
-            null,
-            null,
-            null,
-            null
-          ]
-        },
-        {
-          "n": "Verify Sliding Window",
-          "d": "Fill in formal proof obligations so the verifier accepts.",
-          "c": 0.5,
-          "s": 8.0,
-          "f": [
-            null,
-            null,
-            null,
-            null,
-            null
-          ]
-        }
-      ]
+      "tasks": []
     },
     {
       "id": "consensus",
@@ -1743,7 +1352,7 @@ const CALIBRATOR_DATA = {
             0.02,
             0.0,
             0.05,
-            null
+            0.02
           ]
         },
         {
@@ -1752,11 +1361,11 @@ const CALIBRATOR_DATA = {
           "c": 0.9,
           "s": 8.0,
           "f": [
-            0.5998,
-            0.7041,
-            0.02,
-            0.5998,
-            null
+            0.6665,
+            0.7823,
+            0.4487,
+            0.6665,
+            0.5535
           ]
         },
         {
@@ -1765,11 +1374,11 @@ const CALIBRATOR_DATA = {
           "c": 0.9,
           "s": 8.0,
           "f": [
-            0.9,
-            0.9,
-            0.9,
-            0.9,
-            null
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            0.7244
           ]
         },
         {
@@ -1778,11 +1387,11 @@ const CALIBRATOR_DATA = {
           "c": 0.9,
           "s": 8.0,
           "f": [
-            0.02,
+            0.5812,
             0.0,
-            0.6519,
-            0.02,
-            null
+            0.7244,
+            0.5812,
+            0.0
           ]
         },
         {
@@ -1795,7 +1404,7 @@ const CALIBRATOR_DATA = {
             0.0,
             0.0,
             0.05,
-            null
+            0.05
           ]
         },
         {
@@ -1804,11 +1413,11 @@ const CALIBRATOR_DATA = {
           "c": 0.62,
           "s": 8.0,
           "f": [
-            0.9,
-            0.9,
-            0.9,
-            0.556,
-            null
+            1.0,
+            1.0,
+            1.0,
+            0.6178,
+            0.0
           ]
         },
         {
@@ -1817,11 +1426,11 @@ const CALIBRATOR_DATA = {
           "c": 0.87,
           "s": 8.0,
           "f": [
-            0.9,
-            0.5199,
-            0.5199,
+            1.0,
+            0.5776,
+            0.5776,
             0.0,
-            null
+            0.0
           ]
         },
         {
@@ -1830,11 +1439,11 @@ const CALIBRATOR_DATA = {
           "c": 0.82,
           "s": 8.0,
           "f": [
-            0.02,
-            0.02,
-            0.02,
+            0.2792,
+            0.2792,
+            0.2792,
             0.0,
-            null
+            0.0
           ]
         },
         {
@@ -1843,11 +1452,11 @@ const CALIBRATOR_DATA = {
           "c": 0.48,
           "s": 8.0,
           "f": [
-            0.8178,
-            0.8178,
-            0.9,
-            0.8178,
-            null
+            0.9086,
+            0.9086,
+            1.0,
+            0.9086,
+            0.0
           ]
         },
         {
@@ -1856,11 +1465,11 @@ const CALIBRATOR_DATA = {
           "c": 0.65,
           "s": 8.0,
           "f": [
-            0.9,
-            0.9,
-            0.9,
-            0.9,
-            null
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
           ]
         },
         {
@@ -1869,11 +1478,11 @@ const CALIBRATOR_DATA = {
           "c": 0.85,
           "s": 8.0,
           "f": [
-            0.9,
-            0.9,
-            0.9,
-            0.5851,
-            null
+            1.0,
+            1.0,
+            1.0,
+            0.6501,
+            0.0
           ]
         },
         {
@@ -1883,10 +1492,10 @@ const CALIBRATOR_DATA = {
           "s": 8.0,
           "f": [
             0.8205,
-            0.02,
-            0.02,
-            0.02,
-            null
+            0.4487,
+            0.3016,
+            0.4487,
+            0.3016
           ]
         },
         {
@@ -1895,11 +1504,11 @@ const CALIBRATOR_DATA = {
           "c": 0.53,
           "s": 9.0,
           "f": [
-            0.8876,
-            0.02,
+            0.9862,
+            0.1946,
             0.0,
-            0.6159,
-            null
+            0.9475,
+            0.1946
           ]
         },
         {
@@ -1912,7 +1521,7 @@ const CALIBRATOR_DATA = {
             0.0,
             0.0,
             0.0,
-            null
+            0.0
           ]
         },
         {
@@ -1925,7 +1534,7 @@ const CALIBRATOR_DATA = {
             0.8819,
             0.8819,
             0.8819,
-            null
+            0.8819
           ]
         },
         {
@@ -1938,7 +1547,7 @@ const CALIBRATOR_DATA = {
             0.0,
             0.0,
             0.0,
-            null
+            0.0
           ]
         },
         {
@@ -1949,9 +1558,9 @@ const CALIBRATOR_DATA = {
           "f": [
             0.0,
             1.0,
-            0.05,
-            0.05,
-            null
+            0.0,
+            0.9809,
+            0.0
           ]
         },
         {
@@ -1961,10 +1570,10 @@ const CALIBRATOR_DATA = {
           "s": 8.0,
           "f": [
             0.05,
-            0.2068,
+            0.9268,
             0.05,
-            0.05,
-            null
+            0.9268,
+            0.0
           ]
         },
         {
@@ -1974,10 +1583,10 @@ const CALIBRATOR_DATA = {
           "s": 8.0,
           "f": [
             0.0,
-            0.05,
-            0.05,
-            0.05,
-            null
+            0.0,
+            0.0,
+            0.9582,
+            0.0
           ]
         },
         {
@@ -1986,11 +1595,11 @@ const CALIBRATOR_DATA = {
           "c": 0.67,
           "s": 8.0,
           "f": [
-            0.849,
-            0.849,
-            0.849,
-            0.2125,
-            null
+            0.9434,
+            0.9434,
+            0.9434,
+            0.3864,
+            0.9026
           ]
         }
       ]

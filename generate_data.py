@@ -187,6 +187,11 @@ def generate_data(envs_dir: Path) -> dict:
                 s = task_scores.get(model)
                 f.append(round(s, 4) if s is not None else None)
 
+            # Skip tasks with fewer than 2 model scores (looks bad on website)
+            scored_count = sum(1 for s in f if s is not None)
+            if scored_count < 2:
+                continue
+
             tasks.append({
                 "n": task_display_name(task_id),
                 "d": task_description(task_id, config),
