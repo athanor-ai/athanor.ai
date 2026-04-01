@@ -4,7 +4,7 @@ const CALIBRATOR_DATA = {
     "claude-sonnet-4-6",
     "gemini-3.1-pro-preview",
     "gemini-2.5-flash",
-    "Mistral-large-3",
+    "mistral-large-3",
     "kimi-k2.5"
   ],
   "modelNames": {
@@ -12,7 +12,7 @@ const CALIBRATOR_DATA = {
     "gemini-2.5-flash": "Gemini 2.5 Flash",
     "gemini-3.1-pro-preview": "Gemini 3.1 Pro",
     "kimi-k2.5": "Kimi K2.5",
-    "Mistral-large-3": "Mistral Large 3"
+    "mistral-large-3": "Mistral Large 3"
   },
   "envs": [
     {
@@ -21,16 +21,16 @@ const CALIBRATOR_DATA = {
       "desc": "Agents fix bugs in SystemVerilog designs and write formal assertions, verified by EBMC bounded model checker.",
       "tasks": [
         {
-          "n": "Fix Restoring Div",
-          "d": "Debug a restoring div circuit until all formal properties prove.",
-          "c": 0.55,
-          "s": 8.0,
+          "n": "Fix TLB Ctrl",
+          "d": "Debug a tlb ctrl circuit until all formal properties prove.",
+          "c": 0.75,
+          "s": 10.0,
           "f": [
             1.0,
             1.0,
-            0.047,
+            0.0243,
             0.0,
-            0.047
+            1.0
           ]
         },
         {
@@ -42,21 +42,21 @@ const CALIBRATOR_DATA = {
             0.4857,
             0.4857,
             0.078,
-            0.0,
+            0.078,
             0.078
           ]
         },
         {
-          "n": "Fix ARB Lock",
-          "d": "Debug a arb lock circuit until all formal properties prove.",
-          "c": 0.65,
+          "n": "Write Assertions Txnmon",
+          "d": "Write SVA assertions for a txnmon module and verify with EBMC.",
+          "c": 0.55,
           "s": 8.0,
           "f": [
-            0.1493,
-            1.0,
-            0.1493,
-            0.1493,
-            0.1493
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
           ]
         }
       ]
@@ -67,14 +67,14 @@ const CALIBRATOR_DATA = {
       "desc": "Agents construct formal proofs in Lean 4 covering compiler correctness, data structure invariants, and rewriting systems.",
       "tasks": [
         {
-          "n": "Ackermann Level3",
-          "d": "Construct Lean 4 proofs for ackermann level3.",
-          "c": 0.6,
-          "s": 10.0,
+          "n": "Merge Sorted",
+          "d": "Construct Lean 4 proofs for merge sorted.",
+          "c": 0.55,
+          "s": 8.0,
           "f": [
             1.0,
             1.0,
-            0.5079,
+            1.0,
             0.0,
             1.0
           ]
@@ -101,7 +101,7 @@ const CALIBRATOR_DATA = {
             0.0,
             1.0,
             1.0,
-            0.0,
+            1.0,
             1.0
           ]
         }
@@ -121,7 +121,7 @@ const CALIBRATOR_DATA = {
             0.4998,
             0.4676,
             0.0,
-            0.0,
+            0.2371,
             0.2367
           ]
         },
@@ -134,21 +134,67 @@ const CALIBRATOR_DATA = {
             0.4249,
             0.3511,
             0.0,
-            0.0,
+            0.2608,
             0.3736
           ]
         },
         {
-          "n": "Mat Diag",
-          "d": "Port the CSparse mat diag function from C to idiomatic Rust.",
+          "n": "Csc Matvec",
+          "d": "Port the CSparse csc matvec function from C to idiomatic Rust.",
           "c": 0.5,
           "s": 8.0,
           "f": [
-            0.3462,
-            0.3506,
-            0.2879,
-            0.2681,
+            0.3364,
+            0.3443,
+            0.2387,
+            0.3487,
             0.0
+          ]
+        }
+      ]
+    },
+    {
+      "id": "congestion",
+      "name": "Congestion Control",
+      "desc": "Agents implement and fix TCP congestion control algorithms with Dafny formal verification of protocol safety.",
+      "tasks": [
+        {
+          "n": "Fix Cubic Slow Start",
+          "d": "Fix cubic slow start congestion control to meet throughput and fairness targets.",
+          "c": 0.9,
+          "s": 8.0,
+          "f": [
+            0.7583,
+            0.7583,
+            0.7583,
+            0.7583,
+            0.0014
+          ]
+        },
+        {
+          "n": "Implement Fast Recovery",
+          "d": "Implement fast recovery congestion control from scratch.",
+          "c": 0.94,
+          "s": 8.0,
+          "f": [
+            0.5011,
+            0.002,
+            0.5291,
+            0.5291,
+            0.5291
+          ]
+        },
+        {
+          "n": "Fix AIMD",
+          "d": "Fix aimd congestion control to meet throughput and fairness targets.",
+          "c": 0.85,
+          "s": 8.0,
+          "f": [
+            0.3007,
+            0.3007,
+            0.0,
+            0.3007,
+            0.3007
           ]
         }
       ]
@@ -167,7 +213,7 @@ const CALIBRATOR_DATA = {
             1.0,
             1.0,
             0.0,
-            0.5215,
+            0.7787,
             0.0
           ]
         },
@@ -180,7 +226,7 @@ const CALIBRATOR_DATA = {
             0.4071,
             0.1307,
             0.0307,
-            0.0,
+            0.1307,
             0.013
           ]
         },
@@ -205,16 +251,16 @@ const CALIBRATOR_DATA = {
       "desc": "Agents write Cedar authorization policies and prove security properties in Lean 4.",
       "tasks": [
         {
-          "n": "Fix Action Group Conflicts",
-          "d": "Fix authorization policy bugs in action group conflicts.",
-          "c": 0.62,
+          "n": "Fix Ip Time Geo Policies",
+          "d": "Fix authorization policy bugs in ip time geo policies.",
+          "c": 0.87,
           "s": 8.0,
           "f": [
             1.0,
-            1.0,
-            1.0,
-            0.0,
-            0.6178
+            0.5776,
+            0.5776,
+            0.5776,
+            0.0
           ]
         },
         {
@@ -226,7 +272,7 @@ const CALIBRATOR_DATA = {
             0.5812,
             0.7244,
             0.0,
-            0.0,
+            0.7244,
             0.5812
           ]
         },
@@ -239,7 +285,7 @@ const CALIBRATOR_DATA = {
             0.3361,
             0.0,
             0.0,
-            0.0,
+            0.3561,
             0.0
           ]
         }

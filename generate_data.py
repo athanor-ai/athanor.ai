@@ -21,7 +21,7 @@ MODELS = [
     "claude-sonnet-4-6",
     "gemini-3.1-pro-preview",
     "gemini-2.5-flash",
-    "Mistral-large-3",
+    "mistral-large-3",
     "kimi-k2.5",
 ]
 
@@ -30,7 +30,7 @@ MODEL_DISPLAY = {
     "gemini-2.5-flash": "Gemini 2.5 Flash",
     "gemini-3.1-pro-preview": "Gemini 3.1 Pro",
     "kimi-k2.5": "Kimi K2.5",
-    "Mistral-large-3": "Mistral Large 3",
+    "mistral-large-3": "Mistral Large 3",
 }
 
 # Env metadata (order, display name, description)
@@ -274,13 +274,15 @@ def generate_data(envs_dir: Path) -> dict:
 
         tasks = []
         for task_id in sorted(configs.keys()):
+            # Check both hyphen and underscore variants (envs are inconsistent)
+            task_id_alt = task_id.replace("_", "-") if "_" in task_id else task_id.replace("-", "_")
             config = configs[task_id]
             scoring = config.get("scoring", {})
             center = scoring.get("sigmoid_center", 0.5)
             scale = scoring.get("sigmoid_scale", 8.0)
 
-            # Build score array in model order
-            task_scores = scores.get(task_id, {})
+            # Build score array in model order (check both hyphen and underscore variants)
+            task_scores = scores.get(task_id, scores.get(task_id_alt, {}))
             f = []
             for model in MODELS:
                 s = task_scores.get(model)
