@@ -249,6 +249,9 @@ def _select_showcase_tasks(tasks: list, n: int = 3) -> list:
     while len(selected) < n and remaining:
         selected.append(remaining.pop(0))
 
+    # Sort: easiest on top (highest Sonnet score), hardest on bottom
+    selected.sort(key=lambda t: -(t["f"][0] if t["f"][0] is not None else 0))
+
     return selected
 
 

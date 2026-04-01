@@ -21,16 +21,16 @@ const CALIBRATOR_DATA = {
       "desc": "Agents fix bugs in SystemVerilog designs and write formal assertions, verified by EBMC bounded model checker.",
       "tasks": [
         {
-          "n": "Fix ARB Lock",
-          "d": "Debug a arb lock circuit until all formal properties prove.",
-          "c": 0.65,
+          "n": "Fix Restoring Div",
+          "d": "Debug a restoring div circuit until all formal properties prove.",
+          "c": 0.55,
           "s": 8.0,
           "f": [
-            0.1493,
             1.0,
-            0.1493,
-            0.1493,
-            0.1493
+            1.0,
+            0.047,
+            0.0,
+            0.047
           ]
         },
         {
@@ -47,16 +47,16 @@ const CALIBRATOR_DATA = {
           ]
         },
         {
-          "n": "Fix Restoring Div",
-          "d": "Debug a restoring div circuit until all formal properties prove.",
-          "c": 0.55,
+          "n": "Fix ARB Lock",
+          "d": "Debug a arb lock circuit until all formal properties prove.",
+          "c": 0.65,
           "s": 8.0,
           "f": [
+            0.1493,
             1.0,
-            1.0,
-            0.047,
-            0.0,
-            0.047
+            0.1493,
+            0.1493,
+            0.1493
           ]
         }
       ]
@@ -67,14 +67,14 @@ const CALIBRATOR_DATA = {
       "desc": "Agents construct formal proofs in Lean 4 covering compiler correctness, data structure invariants, and rewriting systems.",
       "tasks": [
         {
-          "n": "Binary Search",
-          "d": "Construct Lean 4 proofs for binary search.",
-          "c": 0.55,
-          "s": 8.0,
+          "n": "Ackermann Level3",
+          "d": "Construct Lean 4 proofs for ackermann level3.",
+          "c": 0.6,
+          "s": 10.0,
           "f": [
-            0.0,
             1.0,
             1.0,
+            0.5079,
             0.0,
             1.0
           ]
@@ -93,14 +93,14 @@ const CALIBRATOR_DATA = {
           ]
         },
         {
-          "n": "Ackermann Level3",
-          "d": "Construct Lean 4 proofs for ackermann level3.",
-          "c": 0.6,
-          "s": 10.0,
+          "n": "Binary Search",
+          "d": "Construct Lean 4 proofs for binary search.",
+          "c": 0.55,
+          "s": 8.0,
           "f": [
+            0.0,
             1.0,
             1.0,
-            0.5079,
             0.0,
             1.0
           ]
@@ -112,19 +112,6 @@ const CALIBRATOR_DATA = {
       "name": "Systems Migration",
       "desc": "Agents migrate C sparse matrix libraries to idiomatic Rust with Verus verification annotations.",
       "tasks": [
-        {
-          "n": "Mat Diag",
-          "d": "Port the CSparse mat diag function from C to idiomatic Rust.",
-          "c": 0.5,
-          "s": 8.0,
-          "f": [
-            0.3462,
-            0.3506,
-            0.2879,
-            0.2681,
-            0.0
-          ]
-        },
         {
           "n": "Csparse Norm",
           "d": "Port the CSparse norm function from C to idiomatic Rust.",
@@ -150,6 +137,19 @@ const CALIBRATOR_DATA = {
             0.0,
             0.3736
           ]
+        },
+        {
+          "n": "Mat Diag",
+          "d": "Port the CSparse mat diag function from C to idiomatic Rust.",
+          "c": 0.5,
+          "s": 8.0,
+          "f": [
+            0.3462,
+            0.3506,
+            0.2879,
+            0.2681,
+            0.0
+          ]
         }
       ]
     },
@@ -159,15 +159,15 @@ const CALIBRATOR_DATA = {
       "desc": "Agents build and repair distributed consensus protocols with Dafny proofs of safety properties.",
       "tasks": [
         {
-          "n": "Fix Snapshot Replication",
-          "d": "Fix bugs in a snapshot replication protocol implementation.",
-          "c": 0.8,
+          "n": "Fix Consistent Hash Replication",
+          "d": "Fix bugs in a consistent hash replication protocol implementation.",
+          "c": 0.85,
           "s": 8.0,
           "f": [
-            0.3063,
+            1.0,
+            1.0,
             0.0,
-            0.0,
-            0.0,
+            0.5215,
             0.0
           ]
         },
@@ -185,15 +185,15 @@ const CALIBRATOR_DATA = {
           ]
         },
         {
-          "n": "Fix Consistent Hash Replication",
-          "d": "Fix bugs in a consistent hash replication protocol implementation.",
-          "c": 0.85,
+          "n": "Fix Snapshot Replication",
+          "d": "Fix bugs in a snapshot replication protocol implementation.",
+          "c": 0.8,
           "s": 8.0,
           "f": [
-            1.0,
-            1.0,
+            0.3063,
             0.0,
-            0.5215,
+            0.0,
+            0.0,
             0.0
           ]
         }
@@ -205,16 +205,16 @@ const CALIBRATOR_DATA = {
       "desc": "Agents write Cedar authorization policies and prove security properties in Lean 4.",
       "tasks": [
         {
-          "n": "Implement And Verify Refactoring",
-          "d": "Prove implement and refactoring safety properties in Dafny.",
-          "c": 0.3,
+          "n": "Fix Action Group Conflicts",
+          "d": "Fix authorization policy bugs in action group conflicts.",
+          "c": 0.62,
           "s": 8.0,
           "f": [
-            0.3361,
+            1.0,
+            1.0,
+            1.0,
             0.0,
-            0.0,
-            0.0,
-            0.0
+            0.6178
           ]
         },
         {
@@ -231,16 +231,16 @@ const CALIBRATOR_DATA = {
           ]
         },
         {
-          "n": "Fix Action Group Conflicts",
-          "d": "Fix authorization policy bugs in action group conflicts.",
-          "c": 0.62,
+          "n": "Implement And Verify Refactoring",
+          "d": "Prove implement and refactoring safety properties in Dafny.",
+          "c": 0.3,
           "s": 8.0,
           "f": [
-            1.0,
-            1.0,
-            1.0,
+            0.3361,
             0.0,
-            0.6178
+            0.0,
+            0.0,
+            0.0
           ]
         }
       ]
