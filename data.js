@@ -218,16 +218,16 @@ const CALIBRATOR_DATA = {
           ]
         },
         {
-          "n": "Implement BFT Kv Store",
-          "d": "Implement bft kv store from the protocol specification.",
-          "c": 0.7,
+          "n": "Verify Log Compaction",
+          "d": "Prove log compaction safety properties in Dafny.",
+          "c": 0.45,
           "s": 8.0,
           "f": [
-            0.4071,
-            0.1307,
-            0.0307,
-            0.1307,
-            0.013
+            0.682,
+            0.682,
+            0.0,
+            0.0,
+            0.682
           ]
         },
         {
