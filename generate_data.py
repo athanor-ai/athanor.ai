@@ -196,32 +196,36 @@ def load_configs(env_dir: Path) -> dict:
 def _select_showcase_tasks(tasks: list, n: int = 3) -> list:
     """Select n tasks for the website showcase.
 
+    Hard requirements:
+    - ALL 5 model scores must be non-None (no empty boxes ever)
+    - Model spread > 0.1 (boring if all models score the same)
+
     Criteria (in priority order):
     1. Sonnet leads or ties for best score (shows our primary model well)
     2. Good difficulty spread across models (interesting to look at)
     3. Mix of difficulty levels (hard/medium/easy)
     """
-    if len(tasks) <= n:
-        return tasks
-
     def sonnet_score(t):
         return t["f"][0] if t["f"][0] is not None else -1
 
     def sonnet_leads(t):
-        """True if Sonnet is the best or tied-best model on this task."""
         s = sonnet_score(t)
-        if s < 0:
-            return False
+        if s < 0: return False
         others = [x for x in t["f"][1:] if x is not None]
-        if not others:
-            return True
-        return s >= max(others) - 0.05  # within 0.05 counts as tied
+        if not others: return True
+        return s >= max(others) - 0.05
 
     def model_spread(t):
         valid = [s for s in t["f"] if s is not None]
-        if len(valid) < 2:
-            return 0
+        if len(valid) < 2: return 0
         return max(valid) - min(valid)
+
+    # Hard filter: all 5 scores present + some spread
+    tasks = [t for t in tasks if all(s is not None for s in t["f"])]
+    tasks = [t for t in tasks if model_spread(t) > 0.1]
+
+    if len(tasks) <= n:
+        return tasks
 
     # Prefer tasks where Sonnet leads
     sonnet_wins = [t for t in tasks if sonnet_leads(t)]

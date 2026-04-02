@@ -80,16 +80,16 @@ const CALIBRATOR_DATA = {
           ]
         },
         {
-          "n": "Increasing Triplet",
-          "d": "Construct Lean 4 proofs for increasing triplet.",
-          "c": 0.55,
+          "n": "Nat Induction Hard",
+          "d": "Construct Lean 4 proofs for nat induction hard.",
+          "c": 0.5,
           "s": 8.0,
           "f": [
-            0.734,
-            0.734,
-            0.734,
-            0.734,
-            0.734
+            0.6971,
+            1.0,
+            1.0,
+            0.0,
+            1.0
           ]
         },
         {
