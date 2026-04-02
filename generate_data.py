@@ -39,114 +39,88 @@ ENVS = [
         "dir": "hw-cbmc-env",
         "id": "hw-cbmc",
         "name": "Hardware Verification",
-        "desc": "Agents fix bugs in SystemVerilog designs and write formal assertions, verified by EBMC bounded model checker.",
+        "desc": "Agents debug and formally verify hardware designs against temporal and safety properties.",
     },
     {
         "dir": "lean-demo",
         "id": "lean",
         "name": "Theorem Proving",
-        "desc": "Agents construct formal proofs in Lean 4 covering compiler correctness, data structure invariants, and rewriting systems.",
+        "desc": "Agents construct formal proofs covering compiler correctness, data structure invariants, and abstract algebra.",
     },
     {
         "dir": "csparse-rust-env",
         "id": "csparse",
         "name": "Systems Migration",
-        "desc": "Agents migrate C sparse matrix libraries to idiomatic Rust with Verus verification annotations.",
+        "desc": "Agents port numerical computing libraries to a memory-safe language with formal verification.",
     },
     {
         "dir": "congestion-control",
         "id": "congestion",
-        "name": "Congestion Control",
-        "desc": "Agents implement and fix TCP congestion control algorithms with Dafny formal verification of protocol safety.",
+        "name": "Network Protocols",
+        "desc": "Agents implement and fix congestion control algorithms, verified against performance and fairness targets.",
     },
     {
         "dir": "distributed-consensus",
         "id": "consensus",
         "name": "Distributed Systems",
-        "desc": "Agents build and repair distributed consensus protocols with Dafny proofs of safety properties.",
+        "desc": "Agents build and repair consensus protocols, verified against safety and liveness specifications.",
     },
     {
         "dir": "cedar-env",
         "id": "cedar",
         "name": "Authorization",
-        "desc": "Agents write Cedar authorization policies and prove security properties in Lean 4.",
+        "desc": "Agents write and verify authorization policies against security property specifications.",
     },
 ]
 
 # Task display name cleanup
 def task_display_name(task_id: str) -> str:
-    """Convert task ID to human-readable name."""
+    """Convert task ID to vague human-readable name (hide tool specifics)."""
     name = task_id.replace("-", " ").replace("_", " ")
-    # Capitalize each word, handle special cases
+    # Strip tool-revealing prefixes
+    for prefix in ["write assertions ", "verify ", "verus ", "csparse ", "csc "]:
+        if name.lower().startswith(prefix):
+            name = name[len(prefix):]
+    # Capitalize
     words = name.split()
     result = []
     for w in words:
         if w.lower() in ("fifo", "uart", "spi", "i2c", "dma", "alu", "axi", "tlb",
-                          "arb", "lfsr", "noc", "smv", "irq", "bft", "pbft", "crdt",
-                          "lsm", "bbr", "aimd", "pcc", "tcp", "rbt", "sva", "ebmc"):
+                          "arb", "lfsr", "irq", "bft", "pbft", "crdt", "lsm",
+                          "bbr", "aimd", "pcc", "tcp"):
             result.append(w.upper())
-        elif w.lower() in ("fix", "implement", "write", "verify", "prove", "verus"):
-            result.append(w.capitalize())
         else:
             result.append(w.capitalize())
     return " ".join(result)
 
 
 def task_description(task_id: str, config: dict, env_id: str) -> str:
-    """Generate a meaningful description from task ID, config, and env context."""
+    """Generate vague, high-level descriptions that don't reveal tools or methods."""
     tt = config.get("task_type", "")
-    name = task_id.replace("-", " ").replace("_", " ")
 
-    # Formal verification tasks -- specific per verifier
-    if "assertion" in tt or "write_assertion" in tt:
-        return f"Write SVA assertions for a {name.replace('write assertions ', '')} module and verify with EBMC."
-    if "verify" in tt or "formal" in tt:
-        subject = name.replace("verify ", "")
-        return f"Prove {subject} safety properties in Dafny."
-    if "verus" in tt:
-        subject = name.replace("verus ", "").replace(" proof", "")
-        return f"Add Verus verification annotations to prove {subject} operations correct."
-    if "fill_sorry" in tt:
-        subject = name.replace("fix proof errors", "proof repair").replace("fix wrong lemma", "lemma repair")
-        return f"Construct Lean 4 proofs for {subject}."
+    # Formal verification tasks -- keep vague
+    if any(kw in tt for kw in ["assertion", "verify", "verus", "formal", "fill_sorry", "fix_broken"]):
+        return "Write formal proofs that a verifier accepts."
 
-    # Domain-specific descriptions
+    # Domain-specific but vague
     if env_id == "hw-cbmc":
-        if "fix" in tt:
-            circuit = name.replace("fix ", "")
-            return f"Debug a {circuit} circuit until all formal properties prove."
-        return f"Implement a {name.replace('implement ', '')} circuit to satisfy formal properties."
-
+        return "Debug or verify a hardware design against formal properties."
     if env_id == "consensus":
-        if "fix" in tt:
-            protocol = name.replace("fix ", "")
-            return f"Fix bugs in a {protocol} protocol implementation."
-        return f"Implement {name.replace('implement ', '')} from the protocol specification."
-
+        if "fix" in tt: return "Fix bugs in a distributed protocol implementation."
+        return "Implement a distributed protocol from specification."
     if env_id == "congestion":
-        if "fix" in tt:
-            algo = name.replace("fix ", "")
-            return f"Fix {algo} congestion control to meet throughput and fairness targets."
-        if "implement" in tt:
-            algo = name.replace("implement ", "")
-            return f"Implement {algo} congestion control from scratch."
-        if "tune" in tt:
-            return f"Tune {name.replace('tune ', '')} parameters for target network conditions."
-        return f"Complete the {name} congestion control task."
-
+        if "fix" in tt: return "Fix a network protocol to meet performance targets."
+        if "implement" in tt: return "Implement a network protocol from scratch."
+        return "Optimize network protocol parameters."
     if env_id == "csparse":
-        subject = name.replace("csparse ", "")
-        return f"Port the CSparse {subject} function from C to idiomatic Rust."
-
+        return "Port a numerical computing function to a verified implementation."
     if env_id == "cedar":
-        if "fix" in tt:
-            return f"Fix authorization policy bugs in {name.replace('fix ', '')}."
-        if "prove" in name.lower():
-            subject = name.replace("prove ", "")
-            return f"Prove {subject} in Lean 4."
-        return f"Build authorization policies for {name.replace('implement ', '')}."
+        if "fix" in tt: return "Fix bugs in an authorization policy system."
+        return "Build or verify authorization policies."
+    if env_id == "lean":
+        return "Construct formal mathematical proofs."
 
-    return f"Complete the {name} task."
+    return "Complete the engineering task."
 
 
 def load_scores(env_dir: Path) -> dict:

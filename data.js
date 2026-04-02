@@ -18,11 +18,11 @@ const CALIBRATOR_DATA = {
     {
       "id": "hw-cbmc",
       "name": "Hardware Verification",
-      "desc": "Agents fix bugs in SystemVerilog designs and write formal assertions, verified by EBMC bounded model checker.",
+      "desc": "Agents debug and formally verify hardware designs against temporal and safety properties.",
       "tasks": [
         {
           "n": "Fix TLB Ctrl",
-          "d": "Debug a tlb ctrl circuit until all formal properties prove.",
+          "d": "Write formal proofs that a verifier accepts.",
           "c": 0.75,
           "s": 10.0,
           "f": [
@@ -35,7 +35,7 @@ const CALIBRATOR_DATA = {
         },
         {
           "n": "Fix FIFO Async",
-          "d": "Debug a fifo async circuit until all formal properties prove.",
+          "d": "Write formal proofs that a verifier accepts.",
           "c": 0.75,
           "s": 8.0,
           "f": [
@@ -48,7 +48,7 @@ const CALIBRATOR_DATA = {
         },
         {
           "n": "Fix ARB Lock",
-          "d": "Debug a arb lock circuit until all formal properties prove.",
+          "d": "Write formal proofs that a verifier accepts.",
           "c": 0.65,
           "s": 8.0,
           "f": [
@@ -64,11 +64,11 @@ const CALIBRATOR_DATA = {
     {
       "id": "lean",
       "name": "Theorem Proving",
-      "desc": "Agents construct formal proofs in Lean 4 covering compiler correctness, data structure invariants, and rewriting systems.",
+      "desc": "Agents construct formal proofs covering compiler correctness, data structure invariants, and abstract algebra.",
       "tasks": [
         {
           "n": "Merge Sorted",
-          "d": "Construct Lean 4 proofs for merge sorted.",
+          "d": "Write formal proofs that a verifier accepts.",
           "c": 0.55,
           "s": 8.0,
           "f": [
@@ -81,7 +81,7 @@ const CALIBRATOR_DATA = {
         },
         {
           "n": "Nat Induction Hard",
-          "d": "Construct Lean 4 proofs for nat induction hard.",
+          "d": "Write formal proofs that a verifier accepts.",
           "c": 0.5,
           "s": 8.0,
           "f": [
@@ -94,7 +94,7 @@ const CALIBRATOR_DATA = {
         },
         {
           "n": "Binary Search",
-          "d": "Construct Lean 4 proofs for binary search.",
+          "d": "Write formal proofs that a verifier accepts.",
           "c": 0.55,
           "s": 8.0,
           "f": [
@@ -110,11 +110,11 @@ const CALIBRATOR_DATA = {
     {
       "id": "csparse",
       "name": "Systems Migration",
-      "desc": "Agents migrate C sparse matrix libraries to idiomatic Rust with Verus verification annotations.",
+      "desc": "Agents port numerical computing libraries to a memory-safe language with formal verification.",
       "tasks": [
         {
-          "n": "Csparse Norm",
-          "d": "Port the CSparse norm function from C to idiomatic Rust.",
+          "n": "Norm",
+          "d": "Port a numerical computing function to a verified implementation.",
           "c": 0.5,
           "s": 8.0,
           "f": [
@@ -126,8 +126,8 @@ const CALIBRATOR_DATA = {
           ]
         },
         {
-          "n": "Csparse Usolve",
-          "d": "Port the CSparse usolve function from C to idiomatic Rust.",
+          "n": "Usolve",
+          "d": "Port a numerical computing function to a verified implementation.",
           "c": 0.5,
           "s": 8.0,
           "f": [
@@ -139,8 +139,8 @@ const CALIBRATOR_DATA = {
           ]
         },
         {
-          "n": "Csc Matvec",
-          "d": "Port the CSparse csc matvec function from C to idiomatic Rust.",
+          "n": "Matvec",
+          "d": "Port a numerical computing function to a verified implementation.",
           "c": 0.5,
           "s": 8.0,
           "f": [
@@ -155,12 +155,12 @@ const CALIBRATOR_DATA = {
     },
     {
       "id": "congestion",
-      "name": "Congestion Control",
-      "desc": "Agents implement and fix TCP congestion control algorithms with Dafny formal verification of protocol safety.",
+      "name": "Network Protocols",
+      "desc": "Agents implement and fix congestion control algorithms, verified against performance and fairness targets.",
       "tasks": [
         {
           "n": "Fix Cubic Slow Start",
-          "d": "Fix cubic slow start congestion control to meet throughput and fairness targets.",
+          "d": "Fix a network protocol to meet performance targets.",
           "c": 0.9,
           "s": 8.0,
           "f": [
@@ -173,7 +173,7 @@ const CALIBRATOR_DATA = {
         },
         {
           "n": "Implement Fast Recovery",
-          "d": "Implement fast recovery congestion control from scratch.",
+          "d": "Implement a network protocol from scratch.",
           "c": 0.94,
           "s": 8.0,
           "f": [
@@ -186,7 +186,7 @@ const CALIBRATOR_DATA = {
         },
         {
           "n": "Fix AIMD",
-          "d": "Fix aimd congestion control to meet throughput and fairness targets.",
+          "d": "Fix a network protocol to meet performance targets.",
           "c": 0.85,
           "s": 8.0,
           "f": [
@@ -202,11 +202,11 @@ const CALIBRATOR_DATA = {
     {
       "id": "consensus",
       "name": "Distributed Systems",
-      "desc": "Agents build and repair distributed consensus protocols with Dafny proofs of safety properties.",
+      "desc": "Agents build and repair consensus protocols, verified against safety and liveness specifications.",
       "tasks": [
         {
           "n": "Fix Consistent Hash Replication",
-          "d": "Fix bugs in a consistent hash replication protocol implementation.",
+          "d": "Fix bugs in a distributed protocol implementation.",
           "c": 0.85,
           "s": 8.0,
           "f": [
@@ -218,8 +218,8 @@ const CALIBRATOR_DATA = {
           ]
         },
         {
-          "n": "Verify Log Compaction",
-          "d": "Prove log compaction safety properties in Dafny.",
+          "n": "Log Compaction",
+          "d": "Write formal proofs that a verifier accepts.",
           "c": 0.45,
           "s": 8.0,
           "f": [
@@ -232,7 +232,7 @@ const CALIBRATOR_DATA = {
         },
         {
           "n": "Fix Snapshot Replication",
-          "d": "Fix bugs in a snapshot replication protocol implementation.",
+          "d": "Fix bugs in a distributed protocol implementation.",
           "c": 0.8,
           "s": 8.0,
           "f": [
@@ -248,11 +248,11 @@ const CALIBRATOR_DATA = {
     {
       "id": "cedar",
       "name": "Authorization",
-      "desc": "Agents write Cedar authorization policies and prove security properties in Lean 4.",
+      "desc": "Agents write and verify authorization policies against security property specifications.",
       "tasks": [
         {
           "n": "Fix Ip Time Geo Policies",
-          "d": "Fix authorization policy bugs in ip time geo policies.",
+          "d": "Fix bugs in an authorization policy system.",
           "c": 0.87,
           "s": 8.0,
           "f": [
@@ -265,7 +265,7 @@ const CALIBRATOR_DATA = {
         },
         {
           "n": "Debug Recursive Hierarchy Access",
-          "d": "Build authorization policies for debug recursive hierarchy access.",
+          "d": "Build or verify authorization policies.",
           "c": 0.9,
           "s": 8.0,
           "f": [
@@ -278,7 +278,7 @@ const CALIBRATOR_DATA = {
         },
         {
           "n": "Implement And Verify Refactoring",
-          "d": "Prove implement and refactoring safety properties in Dafny.",
+          "d": "Write formal proofs that a verifier accepts.",
           "c": 0.3,
           "s": 8.0,
           "f": [
