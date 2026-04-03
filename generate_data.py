@@ -141,6 +141,8 @@ def load_scores(env_dir: Path) -> dict:
 
         for result in data.get("results", []):
             task = result.get("task", "")
+            # Normalize: hyphens -> underscores (canonical form)
+            task = task.replace("-", "_")
             score = result.get("score")
             if score is None:
                 continue
